@@ -98,7 +98,7 @@ $categoriesList = $category->getAll();
     </div>
     
     <footer>
-        <p class="copyright">STORENOW @ 2021</p>
+        <p class="copyright">copy by HKT-SHOP.com 2022</p>
     </footer>
 </body>
 

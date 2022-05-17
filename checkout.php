@@ -29,7 +29,7 @@ $userInfo = $user->get();
 
 <body>
     <nav>
-        <label class="logo" id="logo">STORENOW</label>
+        <label class="logo" id="logo">HKT-SHOP.com</label>
         <ul>
             <li><a href="index.php">Trang chủ</a></li>
             <li><a href="productList.php">Sản phẩm</a></li>
@@ -125,7 +125,7 @@ $userInfo = $user->get();
                 <a href="productList.php">Sản Phẩm</a>
             </li>
         </ul>
-        <p class="copyright">STORENOW @ 2021</p>
+        <p class="copyright">copy by HKT-SHOP.com 2022</p>
     </footer>
 </body>
 <script type="text/javascript">

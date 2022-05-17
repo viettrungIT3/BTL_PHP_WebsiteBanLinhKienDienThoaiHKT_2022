@@ -26,7 +26,7 @@ $list = mysqli_fetch_all($product->getFeaturedProducts(), MYSQLI_ASSOC);
 
 <body>
     <nav>
-        <label class="logo">STORENOW</label>
+        <label class="logo">HKT-SHOP.com</label>
         <ul>
             <li><a href="index.php" class="active">Trang chủ</a></li>
             <li><a href="productList.php">Sản phẩm</a></li>
@@ -111,7 +111,7 @@ $list = mysqli_fetch_all($product->getFeaturedProducts(), MYSQLI_ASSOC);
                 <a href="productList.php">Sản Phẩm</a>
             </li>
         </ul>
-        <p class="copyright">STORENOW @ 2021</p>
+        <p class="copyright">copy by HKT-SHOP.com 2022</p>
     </footer>
 </body>
 

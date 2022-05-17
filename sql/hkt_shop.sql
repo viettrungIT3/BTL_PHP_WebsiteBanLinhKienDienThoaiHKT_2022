@@ -199,8 +199,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `fullname`, `dob`, `password`, `role_id`, `status`, `address`, `isConfirmed`, `captcha`) VALUES
-(1, 'admin@gmail.com', 'Nguyễn Lập An Khương', '2021-11-01', 'e10adc3949ba59abbe56e057f20f883e', 1, 1, '', 1, ''),
-(31, 'lapankhuongnguyen@gmail.com', 'khuong nguyen', '2021-12-06', 'c4ca4238a0b923820dcc509a6f75849b', 2, 1, 'CanTho', 1, '56661');
+(1, 'admin@gmail.com', 'Admin', '0000-00-00', 'e10adc3949ba59abbe56e057f20f883e', 1, 1, '', 1, ''),
+(31, 'viettrungcntt03@gmail.com', 'Nguyễn Việt Trung', '2001-09-30', 'c4ca4238a0b923820dcc509a6f75849b', 2, 1, 'Thái Nguyên', 1, '56661');
 
 --
 -- Indexes for dumped tables

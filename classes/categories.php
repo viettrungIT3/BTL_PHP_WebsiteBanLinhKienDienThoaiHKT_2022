@@ -76,6 +76,16 @@ class categories
         }
     }
 
+    public function delete($id)
+    {
+        $query = "DELETE FROM categories WHERE id = $id";
+        $row = $this->db->delete($query);
+        if ($row) {
+            return true;
+        }
+        return false;
+    }
+
     public function getByIdAdmin($id)
     {
         $query = "SELECT * FROM categories where id = '$id'";

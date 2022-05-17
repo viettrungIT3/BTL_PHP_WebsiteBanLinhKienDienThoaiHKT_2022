@@ -205,6 +205,16 @@ class product
         }
     }
 
+    public function delete($id)
+    {
+        $query = "DELETE FROM products WHERE id = $id";
+        $row = $this->db->delete($query);
+        if ($row) {
+            return true;
+        }
+        return false;
+    }
+
     public function active($id)
     {
         $query = "UPDATE products SET status = 1 where id = '$id' ";

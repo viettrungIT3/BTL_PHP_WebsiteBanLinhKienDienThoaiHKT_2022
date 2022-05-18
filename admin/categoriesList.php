@@ -85,7 +85,9 @@ $pageCount = $categories->getCountPaging();
                         <td><?= $value['name'] ?></td>
                         <td><?= ($value['status']) ? "Active" : "Block" ?></td>
                         <td>
-                            <a href="edit_category.php?id=<?= $value['id'] ?>">Xem/Sửa</a>
+                            <a href="edit_category.php?id=<?= $value['id'] ?>">Sửa </a> 
+                            <span> / </span> 
+                            <a href="delete_category.php?id=<?= $value['id'] ?>"> Xóa</a>
                             <?php
                             if ($value['status']) { ?>
                                 <form action="categoriesList.php" method="post">

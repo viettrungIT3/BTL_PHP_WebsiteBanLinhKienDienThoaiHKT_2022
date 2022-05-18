@@ -43,7 +43,7 @@ $pageCount = $categories->getCountPaging();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://use.fontawesome.com/2145adbb48.js"></script>
     <script src="https://kit.fontawesome.com/a42aeb5b72.js" crossorigin="anonymous"></script>
@@ -85,7 +85,9 @@ $pageCount = $categories->getCountPaging();
                         <td><?= $value['name'] ?></td>
                         <td><?= ($value['status']) ? "Active" : "Block" ?></td>
                         <td>
-                            <a href="edit_category.php?id=<?= $value['id'] ?>">Xem/Sửa</a>
+                            <a href="edit_category.php?id=<?= $value['id'] ?>">Sửa </a> 
+                            <span> / </span> 
+                            <a href="delete_category.php?id=<?= $value['id'] ?>"> Xóa</a>
                             <?php
                             if ($value['status']) { ?>
                                 <form action="categoriesList.php" method="post">
@@ -126,7 +128,7 @@ $pageCount = $categories->getCountPaging();
     </div>
     
     <footer>
-        <p class="copyright">STORENOW @ 2021</p>
+        <p class="copyright">copy by HKT-SHOP.com 2022</p>
     </footer>
 </body>
 

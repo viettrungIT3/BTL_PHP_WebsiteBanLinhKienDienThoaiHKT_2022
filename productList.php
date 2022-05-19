@@ -8,8 +8,8 @@ $cart = new cart();
 $totalQty = $cart->getTotalQtyByUserId();
 
 $product = new product();
-$list = $product->getProductsByCateId((isset($_GET['page']) ? $_GET['page'] : 1), (isset($_GET['cateId']) ? $_GET['cateId'] : 2));
-$pageCount = $product->getCountPagingClient((isset($_GET['cateId']) ? $_GET['cateId'] : 2));
+$list = $product->getProductsByCateId((isset($_GET['page']) ? $_GET['page'] : 1), (isset($_GET['cateId']) ? $_GET['cateId'] : 6));
+$pageCount = $product->getCountPagingClient((isset($_GET['cateId']) ? $_GET['cateId'] : 6));
 
 $categories = new categories();
 $categoriesList = $categories->getAll();
@@ -75,11 +75,11 @@ $categoriesList = $categories->getAll();
             foreach ($list as $key => $value) { ?>
                 <div class="card">
                     <div class="imgBx">
-                        <a href="detail.php?id=<?= $value['id'] ?>"><img src="admin/uploads/<?= $value['image'] ?>" alt=""></a>
+                        <a href="detail.php?id=<?= $value['id'] ?>" title="<?= $value['name'] ?>"><img src="admin/uploads/<?= $value['image'] ?>" alt=""></a>
                     </div>
                     <div class="content">
                         <div class="productName">
-                            <a href="detail.php?id=<?= $value['id'] ?>">
+                            <a href="detail.php?id=<?= $value['id'] ?>" title="<?= $value['name'] ?>">
                                 <h3><?= $value['name'] ?></h3>
                             </a>
                         </div>

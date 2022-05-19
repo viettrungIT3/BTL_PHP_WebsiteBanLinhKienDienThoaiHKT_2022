@@ -102,8 +102,7 @@ class product
             "SELECT *
 			 FROM products
 			 WHERE products.status = 1
-             order by products.soldCount DESC
-             LIMIT 8";
+             order by products.soldCount DESC";
         $result = $this->db->select($query);
         return $result;
     }

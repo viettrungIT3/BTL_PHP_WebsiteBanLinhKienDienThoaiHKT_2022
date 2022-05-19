@@ -122,6 +122,12 @@ a:hover {
 
 .productName a {
   color: #6b00a8;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;  /* số dòng hiển thị */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* margin-top:10px; */
 }
 
 .container .card .content .price {

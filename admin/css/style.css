@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Mitr');
 
+:root {
+  --color-primary: #01aa39;
+  --bg-primary: rgb(240, 234, 234);
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -16,7 +21,7 @@ body {
 nav {
   top: 0;
   position: fixed;
-  background: #c00277;
+  background: var(--color-primary);
   height: 80px;
   width: 100%;
 }
@@ -107,8 +112,9 @@ footer .copyright{
   }
 
   th{
-    background-color:  plum;
+    background-color:  var(--color-primary);
     border: 1px solid mediumvioletred;
+    font-size: 1.4rem;
   }
   
   td{
@@ -138,17 +144,23 @@ footer .copyright{
   
   input[type=submit] {
     width: 100%;
-    background-color: mediumvioletred;
+    background-color: var(--color-primary);
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    opacity: 0.8;
+  }
+  
+  input[name=block]{
+    background-color: chocolate !important;
+    z-index: 0;
   }
   
   input[type=submit]:hover{
-    background-color: deeppink;
+    opacity: 1;
   }
 
   .success{

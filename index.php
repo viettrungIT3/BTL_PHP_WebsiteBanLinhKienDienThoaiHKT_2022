@@ -50,7 +50,7 @@ $list = mysqli_fetch_all($product->getFeaturedProducts(), MYSQLI_ASSOC);
     </nav>
     <section class="banner"></section>
     <div class="featuredProducts">
-        <h1>Sản phẩm nổi bật</h1>
+        <h1>Tất cả sản phẩm</h1>
     </div>
     <div class="container" style="grid-template-columns: auto auto auto auto;">
         <?php

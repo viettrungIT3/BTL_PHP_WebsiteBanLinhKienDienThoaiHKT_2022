@@ -79,8 +79,46 @@ a:hover{
   height: auto;
 }
 
-.addNew{
-  margin-top: 30px;
+.control-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;  
+  margin-top: 34px;
+  margin-bottom: -26px;
+  /* font-size: 1.2rem; */
+}
+
+.addNew a{
+  display: block;
+  /* align-items: center;
+  text-align: center;
+  width: 100px;
+  height: 41px;
+  line-height: 41px; */
+  width: 150px;
+  /* margin-top: 34px;
+  margin-bottom: -26px; */
+  background-color: white;
+  color: mediumvioletred;
+  padding: 14px 20px;
+  border: 2px solid mediumvioletred;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.c-search{
+  display: flex;
+  align-items: center;
+  height: 41px;
+}
+.c-search input{
+  height: 41px;
+}
+.c-search button{
+  display: block;
+  width: 41px;
+  height: 41px;
 }
 
 .title{

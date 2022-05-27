@@ -34,6 +34,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $product = new product();
 $list = $product->getAllAdmin((isset($_GET['page']) ? $_GET['page'] : 1));
 $pageCount = $product->getCountPaging();
+
+if (isset($_GET['search'])) {
+    // Gán hàm addslashes để chống sql injection
+    $search = addslashes($_GET['search']);
+
+    // Nếu $search rỗng thì báo lỗi, tức là người dùng chưa nhập liệu mà đã nhấn submit.
+    if (empty($search)) {
+        echo '<script type="text/javascript">alert("Yêu cầu dữ liệu không được để trống!");</script>';
+    } else {
+        $list = $product->getProductByName($search);
+        // echo '<script type="text/javascript">alert("Tính năng này đang bảo trì");</script>';
+    }
+} 
 ?>
 
 <!DOCTYPE html>
@@ -70,10 +83,10 @@ $pageCount = $product->getCountPaging();
         <div class="addNew">
             <a href="add_product.php">Thêm mới</a>
         </div>
-        <div class="c-search">
-            <input type="text" placeholder="Nhập tên sản phẩm">
+        <form class="c-search" action="" method="get">
+            <input type="text" name="search" placeholder="Nhập tên sản phẩm">
             <button type="submit"><i class="fas fa-search"></i></button>
-        </div>
+        </form>
     </div>
     <div class="container">
         <?php $count = 1;
@@ -108,7 +121,7 @@ $pageCount = $product->getCountPaging();
                                 <form action="productlist.php" method="post">
                                     <input type="text" name="id" hidden value="<?= $value['id'] ?>" style="display: none;">
                                     <input type="submit" value="Khóa" name="block">
-                                <!-- </form>
+                                    <!-- </form>
                                 <form action="productlist.php" method="post">
                                     <input type="text" name="id" hidden value="<?= $value['id'] ?>" style="display: none;"> -->
                                     <!-- <input type="submit" value="Xóa" name="delete"> -->

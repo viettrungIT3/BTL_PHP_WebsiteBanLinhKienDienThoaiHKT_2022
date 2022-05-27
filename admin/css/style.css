@@ -75,7 +75,7 @@ a:hover{
 }
 
 .container{
-  margin-top: 30px;
+  /* margin-top: 30px; */
   height: auto;
 }
 
@@ -83,8 +83,8 @@ a:hover{
   display: flex;
   justify-content: space-between;
   align-items: center;  
-  margin-top: 34px;
-  margin-bottom: -26px;
+  /* margin-top: 34px; */
+  /* margin-bottom: -26px; */
   /* font-size: 1.2rem; */
 }
 
@@ -119,10 +119,12 @@ a:hover{
   display: block;
   width: 41px;
   height: 41px;
+  cursor: pointer;
 }
 
 .title{
     background-color: white;
+    margin-top: 80px;
 }
 
 footer {

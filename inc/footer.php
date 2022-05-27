@@ -7,9 +7,9 @@
 				<div class="col_1_of_4 span_1_of_4">
 					<h4>Liên hệ chúng tôi</h4>
 						<ul>
-							<li><span>ĐT:0931930885</span></li>
-							<li><span>Email:xuannguyenngo@gmail.com</span></li>
-							<li><span>Đc:12 kiệt 289 Bùi thị Xuân,TP Huế</span></li>
+							<li><span>ĐT:0919047269</span></li>
+							<li><span>Email:viettrungcntt03@gmail.com</span></li>
+							<li><span>Đc:Minh Khai, Bắc Từ Liêm, Hà Nội</span></li>
 						</ul>
 						<div class="social-icons">
 							<h4>Theo dõi chúng tôi</h4>

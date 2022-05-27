@@ -65,7 +65,7 @@ class user
 				$mail->SMTPAuth   = TRUE;
 				$mail->SMTPSecure = "tls";
 				$mail->Port       = 587;
-				$mail->Host       = "smtp.gmail.com";
+				$mail->Host       = "admin@gmail.com";
 				$mail->Username   = "viettrungcntt03@gmail.com";
 				$mail->Password   = "googleviettrungcntt03";
 

@@ -40,7 +40,7 @@ if (isset($_GET['search'])) {
     if (empty($search)) {
         echo '<script type="text/javascript">alert("Yêu cầu dữ liệu không được để trống!");</script>';
     } else {
-        // $list = $product->getProductByName($search);
+        $list = $user->getUserByName($search);
         // echo '<script type="text/javascript">alert("Tính năng này đang bảo trì");</script>';
     }
 }
@@ -128,7 +128,7 @@ if (isset($_GET['search'])) {
                 <?php } ?>
             </table>
         <?php } else { ?>
-            <h3>Chưa có sản phẩm nào...</h3>
+            <h3>...</h3>
         <?php } ?>
         <div class="pagination">
             <a href="userlist.php?page=<?= (isset($_GET['page'])) ? (($_GET['page'] <= 1) ? 1 : $_GET['page'] - 1) : 1 ?>">&laquo;</a>

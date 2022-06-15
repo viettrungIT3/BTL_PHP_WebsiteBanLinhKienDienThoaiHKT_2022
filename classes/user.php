@@ -131,6 +131,20 @@ class user
         return false;
     }
 
+	public function getUserByName($name_u)
+    {
+        $query =
+            "SELECT *
+			 FROM users
+			 WHERE fullname LIKE '%$name_u%'";
+        $mysqli_result = $this->db->select($query);
+        if ($mysqli_result) {
+            $result = mysqli_fetch_all($mysqli_result, MYSQLI_ASSOC);
+            return $result;
+        }
+        return false;
+    }
+
 	public function getLastUserId()
 	{
 		$query = "SELECT * FROM users ORDER BY id DESC LIMIT 1";

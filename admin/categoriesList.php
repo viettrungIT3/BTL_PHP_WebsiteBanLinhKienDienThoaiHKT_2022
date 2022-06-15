@@ -69,7 +69,7 @@ $pageCount = $categories->getCountPaging();
     </div>
     <div class="control-container">
         <div class="addNew">
-            <a href="add_product.php">Thêm mới</a>
+            <a href="add_category.php">Thêm mới</a>
         </div>
         <div class="c-search">
             <input type="text" placeholder="Nhập tên danh mục">

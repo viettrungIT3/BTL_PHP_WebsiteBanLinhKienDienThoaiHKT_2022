@@ -26,7 +26,7 @@ class user
 		$result = $this->db->select($query);
 		if ($result) {
 			$value = $result->fetch_assoc();
-			if ($value['status'] == 0) {
+			if ($value['status'] == 0 || $value['isConfirmed'] == 0) {
 				$alert = "Tài khoản bạn đang bị khóa hoặc chưa được xác nhận. Vui lòng liên hệ với ADMIN để được xử lý!";
 				return $alert;
 			} else {

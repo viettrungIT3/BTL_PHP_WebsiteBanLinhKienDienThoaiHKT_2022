@@ -14,16 +14,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['block'])) {
         $result = $user->block($_POST['id']);
         if ($result) {
-            echo '<script type="text/javascript">alert("Khóa sản phẩm thành công!");</script>';
+            echo '<script type="text/javascript">alert("Khóa người dùng thành công!");</script>';
         } else {
-            echo '<script type="text/javascript">alert("Khóa sản phẩm thất bại!");</script>';
+            echo '<script type="text/javascript">alert("Khóa người dùng thất bại!");</script>';
         }
     } else if (isset($_POST['active'])) {
         $result = $user->active($_POST['id']);
         if ($result) {
-            echo '<script type="text/javascript">alert("Kích hoạt sản phẩm thành công!");</script>';
+            echo '<script type="text/javascript">alert("Kích hoạt người dùng thành công!");</script>';
         } else {
-            echo '<script type="text/javascript">alert("Kích hoạt sản phẩm thất bại!");</script>';
+            echo '<script type="text/javascript">alert("Kích hoạt người dùng thất bại!");</script>';
         }
     } else {
         echo '<script type="text/javascript">alert("Có lỗi xảy ra!");</script>';

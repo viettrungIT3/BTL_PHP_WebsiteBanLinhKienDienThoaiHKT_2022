@@ -24,7 +24,12 @@ class user
 	{
 		$query = "SELECT * FROM users WHERE email = '$email' AND password = '$password' LIMIT 1 ";
 		$result = $this->db->select($query);
-		if ($result) {
+		$query2 = "SELECT * FROM users WHERE email = '$email' AND password = '$password' AND status = 1 and isConfirmed = 1 LIMIT 1 ";
+		$result2 = $this->db->select($query);
+		if ($result2) {
+			$alert = "Tài khoản bạn đang bị khóa hoặc chưa được xác nhận. Vui lòng liên hệ với ADMIN để được xử lý!";
+			return $alert;
+		} else if ($result) {
 			$value = $result->fetch_assoc();
 			Session::set('user', true);
 			Session::set('userId', $value['id']);

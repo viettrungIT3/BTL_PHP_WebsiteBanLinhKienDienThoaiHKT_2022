@@ -36,10 +36,7 @@ $list = $product->getAllAdmin((isset($_GET['page']) ? $_GET['page'] : 1));
 $pageCount = $product->getCountPaging();
 
 if (isset($_GET['search'])) {
-    // Gán hàm addslashes để chống sql injection
     $search = addslashes($_GET['search']);
-
-    // Nếu $search rỗng thì báo lỗi, tức là người dùng chưa nhập liệu mà đã nhấn submit.
     if (empty($search)) {
         echo '<script type="text/javascript">alert("Yêu cầu dữ liệu không được để trống!");</script>';
     } else {

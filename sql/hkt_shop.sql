@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2021 at 12:46 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Generation Time: Jun 15, 2022 at 10:14 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.0.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `instrumentstore`
+-- Database: `hkt_shop`
 --
 
 -- --------------------------------------------------------
@@ -42,7 +42,12 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `userId`, `productId`, `qty`, `productName`, `productPrice`, `productImage`) VALUES
-(40, 1, 6, 1, 'Essex EUP-123EA1', '230000000', '4c301f519e.jpg');
+(57, 35, 44, 1, 'Đế điện thoại xe hơi Vent mount Pro With MagSafe Belkin WIC002btGR Bạc', '1590000', '4377426429.jpg'),
+(58, 35, 58, 1, 'Đế điện thoại xe hơi OSMIA CK-CH4 Xám', '120000', '6295923885.jpg'),
+(59, 35, 64, 1, 'Dây đeo điện thoại OSMIA silicon CRS ', '30000', '362dbff9ea.jpg'),
+(60, 35, 88, 1, 'Móc treo phích cắm JM HOOKWJM02', '40000', '8bfbae28f9.jpg'),
+(61, 35, 101, 1, 'Tai nghe Bluetooth AirPods 3 Apple MME73 Trắng', '4490000', '968abb4093.jpeg'),
+(62, 35, 98, 1, 'Túi chống nước 5 inch Cosano Trong suốt', '50000', 'e7f8e62c73.jpg');
 
 -- --------------------------------------------------------
 
@@ -61,9 +66,14 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `status`) VALUES
-(2, 'Piano', 1),
-(4, 'Guitar', 1),
-(5, 'Organ', 1);
+(6, 'Sạc dự phòng', 1),
+(7, 'Sạc, cáp', 1),
+(8, 'Gậy chụp ảnh, Gimbal', 1),
+(9, 'Giá đỡ điện thoại/ laptop', 1),
+(10, 'Đế, móc điện thoại', 1),
+(11, 'Túi chống nước', 1),
+(12, 'Tai nghe', 1),
+(13, 'Loa', 1);
 
 -- --------------------------------------------------------
 
@@ -84,7 +94,18 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `userId`, `createdDate`, `receivedDate`, `status`) VALUES
-(39, 31, '2021-12-07', '2021-12-07', 'Complete');
+(40, 1, '2022-05-19', '2022-05-25', 'Complete'),
+(41, 1, '2022-05-19', NULL, 'Processing'),
+(42, 1, '2022-05-20', '2022-05-23', 'Delivering'),
+(43, 1, '2022-05-25', NULL, 'Processing'),
+(44, 35, '2022-05-26', '2022-05-26', 'Complete'),
+(45, 35, '2022-05-26', '2022-05-26', 'Complete'),
+(46, 35, '2022-05-27', '2022-05-27', 'Complete'),
+(47, 1, '2022-05-27', NULL, 'Processing'),
+(48, 2, '2022-06-15', NULL, 'Processing'),
+(49, 2, '2022-06-15', '2022-06-15', 'Complete'),
+(50, 2, '2022-06-15', NULL, 'Processing'),
+(51, 2, '2022-06-15', '2022-06-18', 'Processed');
 
 -- --------------------------------------------------------
 
@@ -107,10 +128,25 @@ CREATE TABLE `order_details` (
 --
 
 INSERT INTO `order_details` (`id`, `orderId`, `productId`, `qty`, `productPrice`, `productName`, `productImage`) VALUES
-(36, 39, 7, 2, '3190000', 'GUITAR YAMAHA CX40', 'd3ac08c33e.jpg'),
-(37, 39, 4, 1, '749000000', 'Boston GP-156', 'a30bcd79d7.jpg'),
-(38, 39, 8, 3, '19000000', 'Taylor 114E', 'cb50eef0d8.jpg'),
-(39, 39, 9, 4, '4200000', 'Takamine D2D', '758ded2800.jpg');
+(40, 40, 21, 2, '245000', 'Pin sạc dự phòng Polymer 10.000 mAh Hydrus PA CK01 ', 'df280f19b3.jpg'),
+(41, 41, 28, 40, '100000', 'Adapter Sạc USB Hydrus ACL2018', 'b52eabed75.jpeg'),
+(42, 42, 22, 5, '245000', 'Pin sạc dự phòng Polymer 10.000 mAh Hydrus PJ JP196', 'cbdb844350.jpg'),
+(43, 43, 28, 3, '100000', 'Adapter Sạc USB Hydrus ACL2018', 'b52eabed75.jpeg'),
+(44, 43, 31, 1, '80000', 'Cáp Type C - Type C 2m Hydrus DS465', '29d1f8fd1e.jpeg'),
+(45, 44, 90, 1, '30000', 'Móc treo điện thoại Cosano Hình Búp Bê', 'ef86faa854.jpg'),
+(46, 45, 41, 1, '90000', 'Gậy Chụp Ảnh Xmobile Hình Stitch CSA004', 'ce2d8b2ae6.jpg'),
+(47, 45, 30, 2, '100000', 'Cáp Type C - Type C 1m Hydrus DS464', '4b9515e06f.jpeg'),
+(48, 46, 100, 1, '5190000', 'Tai nghe Bluetooth AirPods Pro MagSafe Charge Apple MLWK3 Trắng', '93eda2c3ec.jpg'),
+(49, 47, 32, 1, '48000', 'Adapter Sạc USB 5W Hydrus CS-TC027 Trắng', 'cc84fda5cf.jpg'),
+(50, 47, 63, 1, '120000', 'Đế điện thoại trên xe máy Esaver JHD-40HD12 Đen', '4affeca067.jpg'),
+(51, 47, 92, 1, '50000', 'Túi chống nước Cosano JMG-C-21 Xanh biển', '580188b2fb.jpg'),
+(52, 48, 21, 2, '245000', 'Pin sạc dự phòng Polymer 10.000 mAh Hydrus PA CK01 ', 'df280f19b3.jpg'),
+(53, 48, 22, 1, '245000', 'Pin sạc dự phòng Polymer 10.000 mAh Hydrus PJ JP196', 'cbdb844350.jpg'),
+(54, 49, 99, 1, '3490000', 'Tai nghe Bluetooth AirPods 2 Wireless charge Apple MRXJ2 ', 'a19b1392ad.jpg'),
+(55, 49, 104, 1, '1351000', 'Tai nghe Bluetooth True Wireless OPPO ENCO Air 2 ETE11', '340df0b397.jpg'),
+(56, 49, 101, 1, '4490000', 'Tai nghe Bluetooth AirPods 3 Apple MME73 Trắng', '968abb4093.jpeg'),
+(57, 50, 34, 1, '890000', 'Gimbal chống rung Moza Nano SE', '8f31bf8870.jpg'),
+(58, 51, 98, 1, '50000', 'Túi chống nước 5 inch Cosano Trong suốt', 'e7f8e62c73.jpg');
 
 -- --------------------------------------------------------
 
@@ -138,23 +174,95 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `originalPrice`, `promotionPrice`, `image`, `createdBy`, `createdDate`, `cateId`, `qty`, `des`, `status`, `soldCount`) VALUES
-(2, 'Kohler & Campbell KIG50D', '233000000', '220000000', '95548b09b3.jpg', 1, '0000-00-00', 2, 96, 'Với kích thước linh hoạt, giúp người chơi dễ dàng bố trí phù hợp cho mọi không gian. Giờ đây, người chơi sẽ không còn lo ngại với diện tích không gian chật hẹp. Từ phòng khách, sảnh nhà hàng, khách sạn,.. hay bất cứ đâu Kohler & Campbell KiG50D sẽ góp phần làm nổi bật không gian thêm phần sang trọng.', 1, 4),
-(3, 'Kawai ND-21', '90500000', '85000000', '8d2e8819d7.jpg', 1, '0000-00-00', 2, 9, 'Đàn Piano Kawai ND-21 hiện thân cho vẻ đẹp của một cây Piano Acoustic ở phân khúc giá rẻ. Khoác bên ngoài vẻ đẹp sang trọng của một cây đàn upright piano.', 1, 1),
-(4, 'Boston GP-156', '749000000', '749000000', 'a30bcd79d7.jpg', 1, '0000-00-00', 2, 19, 'Đàn piano Boston là một thương hiệu con của hãng Piano lừng danh Steinway & Sons, mang cùng một tiêu chuẩn xuất sắc của tất cả các công cụ được thiết kế bởi hãng này. GP-156 PE được thừa hưởng những thiết kế ưu việt của thương hiệu Steinway, mang âm sắc cổ điện với thiết kế tinh tế, đẹp và hiện đại.', 1, 1),
-(5, 'Kohler & Campbell J310B', '98000000', '90000000', '109cc07e03.jpg', 1, '0000-00-00', 2, 8, 'Công ty Công nghiệp Kohler & Campbell, Inc đã được thành lập vào năm 1896 tại New York bởi 2 nhà đồng thời sáng lập là Charles Kohler và John Campbell. Campbell là một thợ máy đã phát minh ra một số máy chế biến gỗ và sắt và sau đó đã áp dụng vào việc chế tạo đàn piano.', 1, 2),
-(6, 'Essex EUP-123EA1', '230000000', '230000000', '4c301f519e.jpg', 1, '0000-00-00', 2, 7, 'Piano Essex EUP-123E nổi bật với phong cách cổ điển, sang trọng. Cây đàn được thiết kế bởi thương hiệu Steinway & Sons, phối hợp với nhà thiết kế đồ nội thất nổi tiếng William Faber tạo nên sự đẳng cấp, tinh tế của cây đàn.aah', 1, 3),
-(7, 'GUITAR YAMAHA CX40', '3190000', '3190000', 'd3ac08c33e.jpg', 1, '2021-12-07', 4, 8, 'Đàn Classic Guitar Yamaha CX40', 1, 2),
-(8, 'Taylor 114E', '19000000', '19000000', 'cb50eef0d8.jpg', 1, '2021-12-07', 4, 7, 'Đàn guitar Taylor 114E là một dòng sản phẩm acoustic thuộc dòng series 1 của taylor với thiết kế độc đáo đó chính là khớp nối cần đàn và sử dụng gỗ sitka spruce tạo âm thanh vô cùng trong trẻo, sống động, giúp người chơi có thể cảm nhận được tốt hơn và đây cũng là ưu điểm nổi bật tạo lên sự thành công cho thương hiệu Taylor.', 1, 3),
-(9, 'Takamine D2D', '4200000', '4200000', '758ded2800.jpg', 1, '2021-12-07', 4, 6, 'Đàn guitar Takamine D2D là sản phẩm nổi bật của thương hiệu Takamine Nhật Bản và được rất nhiều tín đồ săn đón trong thời gian gần đây. Không những mang đến một thiết kế dáng đàn đẹp mắt, vừa vặn với mọi dáng người mà âm thanh tuyệt vời mà bạn không thể chê vào đâu được.', 1, 4),
-(10, 'Takamine ED2DCNAT', '6350000', '6200000', '1dfd0eec5c.jpg', 1, '2021-12-07', 4, 10, 'Đàn guitar Takamine ED2DCNAT là một sản phẩm được thiết kế hoàn hảo đến từng chi tiết với mặt đàn được làm từ gỗ Spruce, mặt sau và hông đàn được làm từ gỗ Mahogany, cùng hệ thống điện tử khuếch đại âm thanh để truyền tải âm thanh đến cho người nghe một cách rõ ràng và chân thật nhất.\r\n\r\nChắc hẳn, đây chính là cây đàn guitar tuyệt vời dành riên cho bạn, bất kể bạn là người mới học hay là người chơi đàn guitar có nhiều kinh nghiệm.', 1, 0),
-(11, 'TAYLOR 150E 12 String', '21100000', '21100000', '9bc38b3364.jpg', 1, '2021-12-07', 4, 10, 'Đàn Guitar Taylor 150E 12 String là cây đàn acoustic sở hữu 12 dây đàn đã tạo ra âm thanh tốt, chuẩn xác, thiết kế độc đáo, tinh tế cùng với việc cân bằng ánh sáng octave sắc nét đã tạo ra tông màu tươi sáng, tốt và rõ ràng. Đây chắc hẳn là những tính năng nổi bật đã tạo nên sự khác biệt trong các loại đàn khác.', 1, 0),
-(12, 'TAYLOR 214CE DLX', '34700000', '34700000', 'e235fe0bc6.jpg', 1, '2021-12-07', 4, 10, 'Đàn guitar Taylor 214CE DLX sở hữu thiết kế độc đáo với đường nét trên cơ thể mượt mà mang đến âm thanh trung thực, giai điệu rõ ràng và sử dụng chất liệu gỗ rosewood đem lại giai điệu tuyệt vời trong một loại nhạc cụ tuyệt đẹp.', 1, 0),
-(13, 'Roland BK-9', '31000000', '31000000', 'bf843e62a9.jpg', 1, '2021-12-07', 5, 20, 'Đàn organ Roland BK-9 là công cụ hàng đầu mới trong loạt dòng BK nổi tiếng, mang lại âm thanh giật gân, nhịp điệu hàng đầu, và một lựa chọn đáng kinh ngạc của các tính năng cao cấp. Bạn có một thế giới âm nhạc dưới sự kiểm soát của ngón tay, với một lựa chọn âm thanh tuyệt vời - bao gồm âm thanh SuperNATURAL nổi tiếng của Roland - và một loạt các giai điệu đệm hoàn toàn remastered trong gần như mọi thể loại âm nhạc, từ cổ điển đến hiện đại.', 1, 0),
-(14, 'Roland E-A7', '29000000', '29000000', 'd1a3f61f87.jpg', 1, '2021-12-07', 5, 15, 'Đàn organ Roland E-A7 là cây đàn cao cấp dùng để biểu diễn hoặc đi show với hơn 1.500 âm sắc nhạc cụ đến từ khắp nơi trên thế giới, 156 nút chuyên dụng để truy cập tức thì vào chức năng cho hiệu suất trình diễn mạnh mẽ.', 1, 0),
-(15, 'Roland FA-06', '29500000', '29500000', '8f40bd6405.jpg', 1, '2021-12-07', 5, 10, 'Đàn organ Roland FA-06 là một sản phẩm cao cấp đến từ Roland với âm thanh tốt và nhiều tính năng hấp dẫn hỗ trợ người sử dụng để trình diễn trên sân khấu một cách xuất sắc nhất. Ngoài ra với thiết kế nhỏ gọn nên dễ dàng mang đi di chuyển để biểu diễn mà không lo cồng kềnh hư hỏng.', 1, 0),
-(16, 'Roland FA-08', '44300000', '44300000', 'a12f8914dc.jpg', 1, '2021-12-07', 5, 10, 'Đàn organ Roland FA-08 sở hữu đầy đủ chức năng của một Music Workstation với thiết kế chắc chắn, tính linh hoat cao cùng với hiệu ứng Studio chất lượng cao, điều khiển thời gian thực, hỗ trợ chức năng Sampling và phát lại âm thanh ngay lập tức từ 16 mặt pad có trang bị đèn tín hiệu.', 1, 0),
-(17, 'Roland AXSYNTH', '25100000', '25100000', '422b3a5da2.jpg', 1, '2021-12-07', 5, 20, 'Đàn organ Roland AXSYNTH mang một phong cách mới của Roland, với việc sử dụng âm thanh mạnh mẽ, phong cách solo mới nhất của Roland và có thể đeo lên vai thực hiện phần trình diễn được hiệu quả hơn trên sân khấu.', 1, 0),
-(18, 'Roland GAIA SH-01', '14300000', '14300000', 'c43d221a7b.jpg', 1, '2021-12-07', 5, 5, 'Đàn organ Roland GAIA SH-01 cung cấp cho bạn một tấn hiệu ứng (reverb, biến dạng, lông tơ, tai nạn bit, flanger, phaser, pitch shifter, tăng thấp và trì hoãn) để khám phá âm những giới hạn âm thanh tuyệt vời, với những nút tính năng điều chỉnh dễ dàng mang lại sự sáng tạo vô biên của người chơi khi sử dụng cây đàn organ này.', 1, 0);
+(19, 'Pin sạc dự phòng 7500 mAh AVA+ LJ JP199', '350000', '199000', 'be2888a350.jpg', 1, '2022-05-18', 6, 10, '<b>Thông số kỹ thuật: </b>\r\n<br> - Hiệu suất sạc: 64%\r\n<br> - Dung lượng pin: 7.500 mAh\r\n<br> - Thời gian sạc đầy pin: 3 - 4 giờ (dùng Adapter 2A)7 - 8 giờ (dùng Adapter 1A)\r\n<br> - Nguồn vào: Micro USB: 5V - 2A\r\n<br> - Nguồn ra: USB: 5V - 2A\r\n<br> - Lõi pin: Li-Ion\r\n<br> - Công nghệ/Tiện ích: Đèn LED báo hiệu\r\n<br> - Kích thước: Dài 8.7 cm - Rộng 5.8 cm - Dày 2 cm\r\n<br> - Trọng lượng: 172 g\r\n<br> - Thương hiệu của: Thế Giới Di Động\r\n<br> - Sản xuất tại: Trung Quốc\r\n<br> - Hãng: AVA+.', 1, 0),
+(20, 'Pin sạc dự phòng 7.500 mAh AVA+ DS005-PP', '350000', '190000', 'f9e9511a72.jpg', 1, '2022-05-18', 6, 15, '<b>Thông số kỹ thuật: </b>\r\n<br> - Hiệu suất sạc: 64%\r\n<br> - Dung lượng pin: 7.500 mAh\r\n<br> - Thời gian sạc đầy pin: 7 - 8 giờ (dùng Adapter 1A)3 - 4 giờ (dùng Adapter 2A)\r\n<br> - Nguồn vào: Micro USB: 5V - 2A\r\n<br> - Nguồn ra: USB: 5V - 2A\r\n<br> - Lõi pin: Li-Ion\r\n<br> - Công nghệ/Tiện ích: Đèn LED báo hiệu\r\n<br> - Kích thước: Dày 2 cm - Rộng 7 cm - Dài 8 cm\r\n<br> - Trọng lượng: 170 g\r\n<br> - Thương hiệu của: Thế Giới Di Động\r\n<br> - Sản xuất tại: Trung Quốc', 1, 0),
+(21, 'Pin sạc dự phòng Polymer 10.000 mAh Hydrus PA CK01 ', '490000', '245000', 'df280f19b3.jpg', 1, '2022-05-18', 6, 16, '<b>Thông số kỹ thuật: </b>\r\n<br> - Hiệu suất sạc: 64%\r\n<br> - Dung lượng pin: 10.000 mAh\r\n<br> - Thời gian sạc đầy pin: 10 - 11 giờ (dùng Adapter 1A)5 - 6 giờ (dùng Adapter 2A)\r\n<br> - Nguồn vào: Micro USB: 5V - 2A\r\n<br> - Nguồn ra: USB: 5V - 2.1A\r\n<br> - Lõi pin: Polymer\r\n<br> - Công nghệ/Tiện ích: Đèn LED báo hiệu\r\n<br> - Kích thước: Dày 1.5 cm - Rộng 7.5 cm - Dài 14.5cm\r\n<br> - Trọng lượng: 233g\r\n<br> - Thương hiệu của: Thế Giới Di Động\r\n<br> - Sản xuất tại: Trung Quốc\r\n<br> - Hãng: Hydrus. Xem thông tin hãng', 1, 4),
+(22, 'Pin sạc dự phòng Polymer 10.000 mAh Hydrus PJ JP196', '490000', '245000', 'cbdb844350.jpg', 1, '2022-05-18', 6, -1, '<b>Thông số kỹ thuật: </b>\r\n<br> - Hiệu suất sạc: 65%\r\n<br> - Dung lượng pin: 10.000 mAh\r\n<br> - Thời gian sạc đầy pin: 10 - 11 giờ (dùng Adapter 1A)\r\n<br> - Nguồn vào: 5 - 6 giờ (dùng Adapter 2A)\r\n<br> - Nguồn ra: Micro USB: 5V - 2A\r\n<br> - Lõi pin: USB: 5V - 2A\r\n<br> - Công nghệ/Tiện ích: Polymer\r\n<br> - Kích thước: Đèn LED báo hiệu\r\n<br> - Trọng lượng: Cao 13.5 cm - Rộng 6.7 cm - Dày 1.6 cm\r\n<br> - Thương hiệu của: 225 g\r\n<br> - Sản xuất tại: Thế Giới Di Động\r\n<br> - Hãng Trung Quốc', 1, 6),
+(23, 'Pin sạc dự phòng Polymer 10.000mAh AVA+ JP208', '500000', '299000', '6551020c7f.jpg', 1, '2022-05-18', 6, 8, '<b>Thông số kỹ thuật: </b>\r\n<br> - Hiệu suất sạc: 64%\r\n<br> - Dung lượng pin: 10.000 mAh\r\n<br> - Thời gian sạc đầy pin: 10 - 11 giờ (dùng Adapter 1A)\r\n<br> - Nguồn vào: 6 - 7 giờ (dùng Adapter 5V - 2A)\r\n<br> - Nguồn ra: 5V - 2A\r\n<br> - Lõi pin: USB: 5V - 2A\r\n<br> - Công nghệ/Tiện ích: Polymer\r\n<br> - Kích thước: Đèn LED báo hiệu\r\n<br> - Trọng lượng: Dày 1.7 cm - Rộng 6.5 cm - Dài 13.5 cm\r\n<br> - Thương hiệu của: 225 g\r\n<br> - Sản xuất tại: Thế Giới Di Động\r\n<br> - Hãng Trung Quốc', 1, 0),
+(24, 'Pin sạc dự phòng Polymer 10000mAh AVA+ DS006', '500000', '299000', 'dbe7bf9eb1.jpg', 1, '2022-05-18', 6, 20, '- Hiệu suất sạc: 64%\r\n- Dung lượng pin: 10.000 mAh\r\n- Thời gian sạc đầy pin: 10 - 11 giờ (dùng Adapter 1A)\r\n- Nguồn vào: 5 - 6 giờ (dùng Adapter 2A)\r\n- Nguồn ra: Micro USB: 5V - 2A\r\n- Lõi pin: USB: 5V - 2A\r\n- Công nghệ/Tiện ích: Polymer\r\n- Kích thước: Đèn LED báo hiệu\r\n- Trọng lượng: Dày 1.5 cm - Rộng 7 cm - Dài 14.5 cm\r\n- Thương hiệu của: 225 g\r\n- Sản xuất tại: Thế Giới Di Động\r\n- Hãng Trung Quốc', 1, 0),
+(25, 'Pin sạc dự phòng Polymer 10.000 mAh AVA+ PJ JP192', '500000', '299000', '06624ef4d7.jpg', 1, '2022-05-18', 6, 22, '- Hiệu suất sạc: 64%\r\n- Dung lượng pin: 10.000 mAh\r\n- Thời gian sạc đầy pin: 10 - 11 giờ (dùng Adapter 1A)\r\n- Nguồn vào: 5 - 6 giờ (dùng Adapter 2A)\r\n- Nguồn ra: Micro USB: 5V - 2A\r\n- Lõi pin: USB: 5V - 2.4A\r\n- Công nghệ/Tiện ích: Polymer\r\n- Kích thước: Đèn LED báo hiệu\r\n- Trọng lượng: Dài 8.7 cm - Ngang 6 cm - Cao 2 cm\r\n- Thương hiệu của: 182 g\r\n- Sản xuất tại: Thế Giới Di Động\r\n- Hãng Trung Quốc', 1, 0),
+(26, 'Pin sạc dự phòng Polymer 10000mAh Type C AVA+ PJ JP260 ', '550000', '329000', '1842f01391.jpg', 1, '2022-05-18', 6, 10, '- Hiệu suất sạc: 65%\r\n- Dung lượng pin: 10.000 mAh\r\n- Thời gian sạc đầy pin: 10 - 11 giờ (dùng Adapter 1A)\r\n- Nguồn vào: 6 - 7 giờ (dùng Adapter 5V - 2A)\r\n- Nguồn ra: Micro USB: 5V - 2A\r\n- Lõi pin: Type C: 5V- 2.4A\r\n- Công nghệ/Tiện ích: USB: 5V - 2.4A\r\n- Kích thước: Polymer\r\n- Trọng lượng: Đèn LED báo hiệu\r\n- Thương hiệu của: Dày 2 cm - Rộng 6.7 cm - Dài 14.5 cm\r\n- Sản xuất tại: 238g\r\n- Hãng Thế Giới Di Động', 1, 0),
+(27, 'Cáp Type C - Lightning 1m Apple MM0A3 Trắng', '590000', '501000', 'ac55bd19cb.jpeg', 1, '2022-05-19', 7, 100, '<b>Thông số kĩ thuật</b>\r\n<br> - Công nghệ/Tiện ích Hỗ trợ sạc nhanh\r\n<br> - Chức năng Sạc\r\n<br> - Đầu vào Truyền dữ liệu\r\n<br> - Đầu ra USB Type-C\r\n<br> - Độ dài dây Lightning\r\n<br> - Công suất tối đa 1 m\r\n<br> - Sản xuất tại 87 W\r\n<br> - Thương hiệu của Trung Quốc\r\n<br> - Hãng Mỹ', 1, 0),
+(28, 'Adapter Sạc USB Hydrus ACL2018', '200000', '100000', 'b52eabed75.jpeg', 1, '2022-05-19', 7, 57, '<b>Thông số kĩ thuật</b>\r\n<br> - Model: ACL2018\r\n<br> - Chức năng: Sạc\r\n<br> - Đầu vào: 100-240V~50/60Hz, 0.35A\r\n<br> - Đầu ra: USB: 5V - 2.4A\r\n<br> - Dòng sạc tối đa: 12 W\r\n<br> - Kích thước: Dài 8.3 cm - Ngang 3.7 cm - Cao 2.5 cm\r\n<br> - Thương hiệu của: Thế Giới Di Động\r\n<br> - Sản xuất tại: Trung Quốc\r\n<br> - Hãng Hydrus.', 1, 43),
+(30, 'Cáp Type C - Type C 1m Hydrus DS464', '200000', '100000', '4b9515e06f.jpeg', 1, '2022-05-19', 7, 98, '<b>Thông số kĩ thuật</b>\r\n<br> - Công nghệ/Tiện ích Hỗ trợ sạc nhanh\r\n<br> - Chức năng Sạc\r\n<br> - Đầu vào Truyền dữ liệu\r\n<br> - Đầu ra USB Type-C\r\n<br> - Độ dài dây Type C: 5V - 3A, 9V - 2A, 12V - 3A, 15V - 3A, 20V - 3A (Max 60W)\r\n<br> - Công suất tối đa 1 m\r\n<br> - Sản xuất tại 60 W\r\n<br> - Thương hiệu của Trung Quốc\r\n<br> - Hãng Thế Giới Di Động', 1, 2),
+(31, 'Cáp Type C - Type C 2m Hydrus DS465', '200000', '80000', '29d1f8fd1e.jpeg', 1, '2022-05-20', 7, 99, '<b>Thông số kĩ thuật</b>\r\n<br> - Công nghệ/Tiện ích Hỗ trợ sạc nhanh\r\n<br> - Chức năng Sạc\r\n<br> - Đầu vào Truyền dữ liệu\r\n<br> - Đầu ra USB Type-C\r\n<br> - Độ dài dây Type C: 5V - 3A, 9V - 2A, 12V - 3A, 15V - 3A, 20V - 3A (Max 60W)\r\n<br> - Công suất tối đa 2 m\r\n<br> - Sản xuất tại 60 W\r\n<br> - Thương hiệu của Trung Quốc\r\n<br> - Hãng Thế Giới Di Động', 1, 1),
+(32, 'Adapter Sạc USB 5W Hydrus CS-TC027 Trắng', '120000', '48000', 'cc84fda5cf.jpg', 1, '2022-05-20', 7, 19, '<b>Thông số kĩ thuật</b>\r\n<br> - Chức năng: Sạc\r\n<br> - Model: CS-TC027\r\n<br> - Đầu vào: 100-240V~50/60Hz, 0.2A\r\n<br> - Đầu ra: USB: 5V - 1A\r\n<br> - Dòng sạc tối đa: 5 W\r\n<br> - Kích thước: Dài 7.1 cm - Ngang 4 cm - Cao 1.9 cm\r\n<br> - Thương hiệu của: Thế Giới Di Động\r\n<br> - Sản xuất tại: Trung Quốc\r\n<br> - Hãng Hydrus. Xem thông tin hãng', 1, 1),
+(33, 'Gimbal chống rung Zhiyun Smooth XS', '1370000', '1370000', 'ac471e68eb.jpg', 1, '2022-05-25', 8, 15, '<b>Thông số kĩ thuật:</b>\r\n<br> - Phù hợp với: Điện thoại từ 4.7 - 6.7 inch\r\n<br> - Kết nối: Bluetooth 5.0\r\n<br> - Trục chống rung: Trục cuộn\r\n<br> - Phạm vi góc quay: Trục quay\r\n<br> - Thời gian sử dụng: Trục cuộn 270 độ - Trục xoay 268 độ\r\n<br> - Chế độ: Dùng 4 giờ - Sạc 3 giờ\r\n<br> - Trọng lượng: Chế độ chân dung', 1, 0),
+(34, 'Gimbal chống rung Moza Nano SE', '890000', '890000', '8f31bf8870.jpg', 1, '2022-05-25', 8, 14, '<b>Thông số kĩ thuật:</b>\r\n<br> - Phù hợp với: Điện thoại từ 4.7 - 6.7 inch\r\n<br> - Kết nối: Bluetooth 4.0\r\n<br> - Trục chống rung: Bluetooth 5.0\r\n<br> - Phạm vi góc quay: Trục cuộn\r\n<br> - Thời gian sử dụng: Trục cuộn 270 độ\r\n<br> - Chế độ: Dùng 10 giờ - Sạc 2.5 giờ\r\n<br> - Trọng lượng: Chế độ chân dung', 1, 1),
+(35, 'Gậy chụp ảnh Bluetooth Tripod Xmobile K06 Đen', '300000', '300000', '6368f1fbc8.jpg', 1, '2022-05-25', 8, 25, '<b>Thông số kĩ thuật:</b>\r\n<br>- Phù hợp với: Điện thoại dưới 6 inch\r\n<br>- Kết nối: Bluetooth', 1, 0),
+(36, 'Gậy Chụp Ảnh Bluetooth Cosano HD-P7', '150000', '150000', '4c40bb23e1.jpg', 1, '2022-05-25', 8, 30, '<b>Thông số kĩ thuật:</b>\r\n<br> - Tương thích: Điện thoại dưới 6 inch\r\n<br> - Thời gian sử dụng: 20 giờ\r\n<br> - Thời gian sạc đầy: 0.5 giờ\r\n<br> - Độ dài tối thiểu: 20 cm\r\n<br> - Độ dài tối đa: 80 cm\r\n<br> - Thương hiệu của: Trung Quốc\r\n<br> - Sản xuất tại: Trung Quốc', 1, 0),
+(37, 'Gậy Chụp Ảnh Xmobile Hình Cô gái CSA005', '90000', '90000', '93005fbfe0.jpg', 1, '2022-05-25', 8, 50, '<b>Thông số kĩ thuật:</b>\r\n<br> - Phù hợp với: Điện thoại dưới 6 inch', 1, 0),
+(38, 'Gậy Chụp Ảnh Osmia OW5', '70000', '70000', '7a631cb669.jpg', 1, '2022-05-25', 8, 100, '<b>Thông số kĩ thuật:</b>\r\n<br> - Phù hợp với: Điện thoại dưới 6 inch', 1, 0),
+(39, 'Gậy Chụp Ảnh Mini Cosano CW1', '50000', '50000', '7c347eadda.jpg', 1, '2022-05-25', 8, 100, '<b>Thông số kĩ thuật:</b>\r\n<br> - Phù hợp với: Điện thoại dưới 6 inch', 1, 0),
+(40, 'Gậy Chụp Ảnh Osmia OW4', '70000', '70000', '8d4973b1b3.jpg', 1, '2022-05-25', 8, 100, '<b>Thông số kĩ thuật:</b>\r\n<br> - Phù hợp với: Điện thoại dưới 6 inch', 1, 0),
+(41, 'Gậy Chụp Ảnh Xmobile Hình Stitch CSA004', '90000', '90000', 'ce2d8b2ae6.jpg', 1, '2022-05-25', 8, 99, '<b>Thông số kĩ thuật:</b>\r\n<br> - Phù hợp với: Điện thoại dưới 6 inch', 1, 1),
+(42, 'Gậy Chụp Ảnh Osmia OW2', '70000', '70000', 'e1afeccdd5.jpg', 1, '2022-05-25', 8, 100, '<b>Thông số kĩ thuật:</b>\r\n<br> - Phù hợp với: Điện thoại dưới 6 inch', 1, 0),
+(43, 'Gậy Chụp Ảnh Xmobile Hình Kitty CSA003', '90000', '89999', 'a18a5dd51f.jpg', 1, '2022-05-25', 8, 100, '<b>Thông số kĩ thuật:</b>\r\n<br> - Phù hợp với: Điện thoại dưới 6 inch', 1, 0),
+(44, 'Đế điện thoại xe hơi Vent mount Pro With MagSafe Belkin WIC002btGR Bạc', '1590000', '1590000', '4377426429.jpg', 1, '2022-05-25', 9, 50, '<b>Đặc điểm nổi bật</b>\r\n<br> - Thiết kế để gắn ở quạt gió trên ô tô.\r\n<br> - Thiết kế riêng cho dòng iPhone 12, kết nối Magsafe chắc chắn.\r\n<br> - Tương thích với ốp lưng MagSafe (được Apple công nhận).', 1, 0),
+(45, 'Đế điện thoại xe hơi Vent mount Belkin F7U017BT Đen', '769000', '669000', '092b939367.jpg', 1, '2022-05-25', 9, 100, '<b>Đặc điểm nổi bật</b>\r\n<br> - Kiểu dáng nhỏ nhắn, phù hợp đa số các lỗ thông hơi trên ô tô. \r\n<br> - Sử dụng ở chế độ dọc hoặc ngang linh hoạt nhờ khả năng xoay 180 độ.\r\n<br> - Vừa vặn cho smartphone có màn hình tối đa 5.5 inch (bao gồm ốp điện thoại).\r\n<br> - Tích hợp giá đỡ cáp, thu gọn cáp sạc và sử dụng tiện lợi. ', 1, 0),
+(46, 'Đế Laptop Rain Design RD10038 Nhôm Xám', '1290000', '1290000', 'd11f8afa93.jpg', 1, '2022-05-25', 9, 100, '<b>Đặc điểm nổi bật</b>\r\n<br> - Thiết kế đế laptop dọc độc đáo giúp tiết kiệm không gian bàn làm việc. \r\n<br> - Chất liệu nhôm (Aluminum) nguyên khối liền mảnh sang trọng, bền bỉ, tản nhiệt hiệu quả. \r\n<br> - Bên trong khe sườn để Macbook, có đệm bọc cao su chống trầy xước máy.\r\n<br> - Dùng cho mọi dòng Macbook từ 12 – 16 inch và các máy tính xách tay tương thích khác.', 1, 0),
+(47, 'Đế Laptop Rain Design RD10037 Nhôm Bạc', '1290000', '1290000', '1e470c5392.jpg', 1, '2022-05-25', 9, 100, '<b>Đặc điểm nổi bật</b>\r\n<br> - Thiết kế bằng hợp kim nhôm (Aluminum) cao cấp nguyên khối chắc chắn, bền bỉ.\r\n<br> - Giá đỡ máy tính xách tay dọc giúp tiết kiệm không gian bàn làm việc\r\n<br> - Tăng luồng không khí xung quanh để giúp máy tản nhiệt tốt hơn.\r\n<br> - Bên trong khe sườn để Macbook có đệm bọc cao su cao cấp bảo vệ thiết bị đặt vào giá đỡ không bị trầy xước.\r\n<br> - Phù hợp với tất cả các Macbook từ 12 – 16 inch và các dòng laptop tương tự khác', 1, 0),
+(48, 'Đế Tablet Rain Design RD10055 Nhôm Xám', '1190000', '1190000', 'c53bbd26ae.jpg', 1, '2022-05-25', 9, 100, '<b>Đặc điểm nổi bật</b>\r\n<br> - Vẻ ngoài sang trọng, chân đế lớn đặt vững vàng trên mặt phẳng.\r\n<br> - Điều khiển góc nghiêng 10º - 50º chính xác để có tầm nhìn xem phim phù hợp nhất. \r\n<br> - Bằng nhôm nguyên khối cao cấp bền bỉ, tản nhiệt hiệu quả. \r\n<br> - Sạc pin tiện lợi qua khe cắm sạc. \r\n<br> - Đặt vừa các dòng iPad từ 9.7 - 12.9 inch và nhiều mẫu tablet khác.', 1, 0),
+(49, 'Đế Laptop Rain Design RD12031 Nhôm Bạc', '1790000', '1790000', 'c3071307e6.jpg', 1, '2022-05-25', 9, 100, '<b>Đặc điểm nổi bật</b>\r\n<br> - Điều chỉnh độ cao dễ dàng với thanh trượt phía trước và nâng màn hình lên ngang tầm mắt để có tư thế tốt hơn.\r\n<br> - Miếng đệm cao su trên giá đỡ bảo vệ máy tính xách tay và bàn của bạn.\r\n<br> - Thiết kế nghiêng giúp tản nhiệt tốt, tạo khoảng cách phù hợp giữa mắt người dùng và màn hình máy tính.\r\n<br> - Chất liệu hợp kim nhôm (Aluminum) cao cấp nguyên khối, làm mát máy tính giúp tản nhiệt tối ưu nhất.\r\n<br> - Phù hợp với tất cả các Macbook từ 12 inch – 16 inch và hầu hết các máy tính xách tay khác.', 1, 0),
+(50, 'Đế Laptop Rain Design RD12031 Nhôm Bạc', '1790000', '1790000', 'c8f009fc40.jpg', 1, '2022-05-26', 9, 100, '<b>Đặc điểm nổi bật:</b>\r\n<br> - Điều chỉnh độ cao dễ dàng với thanh trượt phía trước và nâng màn hình lên ngang tầm mắt để có tư thế tốt hơn.\r\n<br> - Miếng đệm cao su trên giá đỡ bảo vệ máy tính xách tay và bàn của bạn.\r\n<br> - Thiết kế nghiêng giúp tản nhiệt tốt, tạo khoảng cách phù hợp giữa mắt người dùng và màn hình máy tính.\r\n<br> - Chất liệu hợp kim nhôm (Aluminum) cao cấp nguyên khối, làm mát máy tính giúp tản nhiệt tối ưu nhất.\r\n<br> - Phù hợp với tất cả các Macbook từ 12 inch – 16 inch và hầu hết các máy tính xách tay khác.', 1, 0),
+(51, 'Đế Laptop Rain Design RD10074 Nhôm Xám', '1690000', '1690000', '8896355bbd.jpg', 1, '2022-05-26', 9, 100, '<b>Đặc điểm nổi bật:</b>\r\n<br> - Thiết kế hiện đại, màu xám trang nhã, tiện sắp đặt.\r\n<br> - Đổi hướng máy tính dễ dàng với chân đế xoay 360 độ.\r\n<br> - Nâng cao thiết bị đến 15 cm kết hợp thiết kế nghiêng giúp làm việc tiện lợi. \r\n<br> - Làm từ nhôm (Aluminum) nguyên khối nhẹ bền, hạn chế ăn mòn. \r\n<br> - Đặt vừa các Macbook cỡ từ 12 - 16 inch và những máy tính xách tay có kích thước phù hợp khác.', 1, 0),
+(52, 'Đế Laptop Rain Design RD10073 Nhôm Gold', '1690000', '1690000', '991847a91b.jpg', 1, '2022-05-26', 9, 100, '<b>Đặc điểm nổi bật:</b>\r\n<br> - Thiết kế hiện đại, màu xám trang nhã, tiện sắp đặt.\r\n<br> - Đổi hướng máy tính dễ dàng với chân đế xoay 360 độ.\r\n<br> - Nâng cao thiết bị đến 15 cm kết hợp thiết kế nghiêng giúp làm việc tiện lợi. \r\n<br> - Làm từ nhôm (Aluminum) nguyên khối nhẹ bền, hạn chế ăn mòn. \r\n<br> - Đặt vừa các Macbook cỡ từ 12 - 16 inch và những máy tính xách tay có kích thước phù hợp khác.', 1, 0),
+(53, 'Đế Laptop Rain Design RD10036 Nhôm Bạc', '1690000', '1690000', 'fc706e7b5e.jpg', 1, '2022-05-26', 9, 100, '<b>Đặc điểm nổi bật:</b>\r\n<br> - Thiết kế hiện đại, màu xám trang nhã, tiện sắp đặt.\r\n<br> - Đổi hướng máy tính dễ dàng với chân đế xoay 360 độ.\r\n<br> - Nâng cao thiết bị đến 15 cm kết hợp thiết kế nghiêng giúp làm việc tiện lợi. \r\n<br> - Làm từ nhôm (Aluminum) nguyên khối nhẹ bền, hạn chế ăn mòn. \r\n<br> - Đặt vừa các Macbook cỡ từ 12 - 16 inch và những máy tính xách tay có kích thước phù hợp khác.', 1, 0),
+(54, 'Đế Laptop Rain Design RD10082 Nhôm Bạc', '1590000', '1590000', 'e9924e14d6.jpg', 1, '2022-05-26', 9, 100, '<b>Đặc điểm nổi bật:</b>\r\n<br> - Độ cao màn hình đến 75 mm, giảm nhiệt máy tối ưu. \r\n<br> - Làm từ nhôm (aluminum) nguyên khối dày chắc, sử dụng bền. \r\n<br> - Thích hợp cho các Macbook, laptop, máy tính bảng dài dưới 10.4 inch.\r\n<br> - Thiết kế hiện đại, thanh mảnh, có thể gập gọn, mang theo đến bất kỳ nơi nào.\r\n<br> - Có túi đựng chuyên dụng, cất giữ giá đỡ đơn giản. ', 1, 0),
+(55, 'Đế Laptop Rain Design RD10080 Nhôm Bạc', '750000', '750000', 'c36db8ae2f.jpg', 1, '2022-05-26', 9, 100, '<b>Đặc điểm nổi bật:</b>\r\n<br> - Nâng máy tính xách tay lên 67 mm tạo hiệu quả tản nhiệt tốt hơn.\r\n<br> - Chất liệu nhôm (aluminum) nguyên khối cao cấp có độ bền cao.\r\n<br> - Tương thích với hầu hết laptop, Macbook, tablet dài dưới 10.4 inch.\r\n<br> - Chân đế bọc cao su chống trơn trượt.\r\n<br> - Thiết kế nhẹ và mỏng, chỉ 100 gram, dễ dịch chuyển và sử dụng.', 1, 0),
+(56, 'Đế Laptop WIWU S400 Nhôm Bạc', '750000', '675000', 'c8c114dcb1.jpg', 1, '2022-05-26', 9, 100, '<b>Đặc điểm nổi bật:</b>\r\n<br> - Kiểu dáng hiện đại, có thể gập lại, tiện mang theo.\r\n<br> - Trên các bề mặt tiếp xúc có miếng silicon chống trượt tốt.\r\n<br> - Chiều cao điều chỉnh được 6 mức độ cho bạn dùng laptop với tư thế dễ chịu nhất.\r\n<br> - Tản nhiệt tốt, kéo dài độ bền cho laptop/macbook của bạn hiệu quả.', 1, 0),
+(57, 'Đế Laptop JCPAL JCP6110 Nhôm Bạc', '780000', '702000', '64759cc0bc.jpg', 1, '2022-05-26', 9, 100, '<b>Đặc điểm nổi bật:</b>\r\n<br> - Thiết kế nhôm nguyên khối màu bạc cao cấp và siêu nhẹ.\r\n<br> - Cho máy luôn thoáng mát, làm tăng tuổi thọ máy.\r\n<br> - Có thể điều chỉnh được nhiều góc độ cho phù hợp với bạn.\r\n<br> - Phù hợp với tất cả dòng laptop/macbook giúp vận hành tối ưu, nhẹ nhàng.', 1, 0),
+(58, 'Đế điện thoại xe hơi OSMIA CK-CH4 Xám', '120000', '120000', '6295923885.jpg', 1, '2022-05-26', 9, 100, '<b>Đặc điểm nổi bật:</b>\r\n<br> - Thiết kế hiện đại, dễ dùng, có thể xoay 270 độ.\r\n<br> - Tính năng khóa/mở tự động khi đặt điện thoại lên giá đỡ hoặc nhấc điện thoại ra khỏi.\r\n<br> - Phù hợp cho điện thoại kích thước từ 6.0 inch trở xuống.\r\n<br> - Chân đế hút chân không Silicon có thể hút chắc chắn.', 1, 0),
+(59, 'Đế điện thoại OSMIA CK-CH1/CK-CH3', '50000', '50000', '61a3598e8c.jpg', 1, '2022-05-26', 9, 1000, '<b>Đặc điểm nổi bật:</b>\r\n<br> - Thiết kế đẹp mắt, nhỏ gọn.\r\n<br> - Giữ điện thoại chắc chắn.\r\n<br> - Dễ dàng theo dõi thông báo lúc làm việc.', 1, 0),
+(60, 'Đế điện thoại xe hơi OSMIA CK-CH10/CK-CH11', '100000', '100000', 'dea9a70312.jpg', 1, '2022-05-26', 9, 200, '<b>Đặc điểm nổi bật:</b>\r\n<br> - Thiết kế độc đáo, có khả năng xoay 360 độ.\r\n<br> - Ba chấu thông minh tự động ôm khít điện thoại.\r\n<br> - Ba chấu được trang bị miếng cao su dày và êm.\r\n<br> - Phần đế thiết kế dạng kẹp chắc chắn.\r\n<br> - Tiện lợi xem thông báo, xem map (bản đồ) khi lái xe.', 1, 0),
+(61, 'Đế điện thoại trên xe Cosano PH-Z2', '80000', '80000', '9a382258aa.jpg', 1, '2022-05-26', 9, 100, '<b>Đặc điểm nổi bật:</b>\r\n<br> - Thiết kế đẹp mắt, nhỏ gọn.\r\n<br> - Giữ điện thoại chắc chắn.\r\n<br> - Đế hút chân không giúp bám chặt trên nhiều bề mặt.\r\n<br> - Có thể linh hoạt xoay 360 độ, ngang hoặc dọc.', 1, 0),
+(62, 'Đế điện thoại trên xe Cosano PH-Z1', '100000', '100000', '90d6e87d73.jpg', 1, '2022-05-26', 9, 100, '<b>Đặc điểm nổi bật:</b>\r\n<br> - Thiết kế đẹp mắt, nhỏ gọn.\r\n<br> - Giữ điện thoại chắc chắn.\r\n<br> - Đế hút chân không giúp bám chặt trên nhiều bề mặt.\r\n<br> - Có thể linh hoạt xoay 360 độ, ngang hoặc dọc.', 1, 0),
+(63, 'Đế điện thoại trên xe máy Esaver JHD-40HD12 Đen', '120000', '120000', '4affeca067.jpg', 1, '2022-05-26', 9, 99, '<b>Đặc điểm nổi bật:</b>\r\n<br> - Thiết kế chắc chắn, an toàn.\r\n<br> - Tiện lời gọi điện, xem bản đồ khi đang di chuyển bằng xe máy.\r\n<br> - Trang bị miếng lót đệm êm chống sock và tăng độ bám dính.\r\n<br> - Có khả năng xoay 360 độ linh hoạt góc nhìn.\r\n<br> - Thiết kế công tắc mở/ khóa giúp cố định điện thoại.\r\n<br> - Dễ dàng điều chỉnh kích thước điện thoại.', 1, 1),
+(64, 'Dây đeo điện thoại OSMIA silicon CRS ', '30000', '30000', '362dbff9ea.jpg', 1, '2022-05-26', 10, 500, '<b>Đặc điểm nổi bật:</b>\r\n<br> - Sử dụng chất liệu silicon có độ bền cao.\r\n<br> - Màu sắc nổi bật, trẻ trung.\r\n<br> - Móc vào ốp lưng điện thoại, máy ảnh.', 1, 0),
+(65, 'Bộ 2 móc điện thoại OSMIA CK-CRS10 Mèo cá heo xanh', '60000', '50000', '9a5fd3d85e.jpg', 1, '2022-05-26', 10, 500, 'Cập nhật sau', 1, 0),
+(66, 'Bộ 2 móc điện thoại OSMIA CK-CRS11 Hươu cánh cụt vàng', '60000', '50000', 'd1d38269e3.jpg', 1, '2022-05-26', 10, 500, 'Cập nhật sau', 1, 0),
+(67, 'Bộ 2 móc điện thoại OSMIA CK-CRS34 Xanh hồng', '60000', '50000', '3bf831a11b.jpg', 1, '2022-05-26', 10, 500, 'Cập nhật sau', 1, 0),
+(68, 'Bộ 2 móc điện thoại OSMIA CK-CRS43 Mèo sóc nâu', '60000', '50000', '080cd497be.jpg', 1, '2022-05-26', 10, 500, 'Cập nhật sau', 1, 0),
+(69, 'Bộ 2 móc điện thoại nhựa dẻo OSMIA CK-CRS3 Nai Mèo Đen', '40000', '40000', 'a161eb2ee2.jpg', 1, '2022-05-26', 10, 100, ' ', 1, 0),
+(70, 'Bộ 2 móc điện thoại nhựa dẻo OSMIA CK-CRS2 Gấu Khỉ Đen', '40000', '40000', '75de1eab05.jpg', 1, '2022-05-26', 10, 100, ' ', 1, 0),
+(71, 'Bộ 2 móc điện thoại nhựa dẻo OSMIA CK-CRS1 Mèo Hoa Đen', '40000', '40000', '108f690fea.jpg', 1, '2022-05-26', 6, 100, ' ', 1, 0),
+(72, 'Đế dán điện thoại OSMIA POP006 Banh Trắng đen', '50000', '40000', 'f1274d5421.jpg', 1, '2022-05-26', 10, 100, ' ', 1, 0),
+(73, 'Đế dán điện thoại OSMIA POP005 Hoa Văn Xanh lá', '50000', '40000', '6d96eb1fc2.jpg', 1, '2022-05-26', 10, 100, ' ', 1, 0),
+(74, 'Móc dán điện thoại OSMIA RingCK044 Sọc Vàng', '50000', '40000', '2d7959b1e9.jpg', 1, '2022-05-26', 10, 100, ' ', 1, 0),
+(75, 'Móc dán điện thoại OSMIA RingCK043 Sao Đen', '50000', '40000', '2d833330e0.jpg', 1, '2022-05-26', 10, 100, ' ', 1, 0),
+(76, 'Móc dán điện thoại OSMIA RingCK042 Vân Đen', '50000', '40000', '983c1d57dc.jpg', 1, '2022-05-26', 10, 100, ' ', 1, 0),
+(77, 'Móc dán điện thoại OSMIA RingCK041 Vân Hồng', '50000', '40000', '6a08a530f0.jpg', 1, '2022-05-26', 10, 100, ' ', 1, 0),
+(78, 'Đế dán điện thoại OSMIA POP004 Hoa văn Đen', '50000', '40000', '2e0530236f.jpg', 1, '2022-05-26', 10, 100, ' ', 1, 0),
+(79, 'Đế dán điện thoại OSMIA POP003 Gold', '30000', '25000', '8e0eaa9084.jpg', 1, '2022-05-26', 10, 100, ' ', 1, 0),
+(80, 'Móc dán điện thoại OSMIA RingCK039 Cún Trắng', '50000', '40000', 'b4114b0ed4.jpg', 1, '2022-05-26', 10, 100, ' ', 1, 0),
+(81, 'Móc dán điện thoại OSMIA RingCK038', '50000', '40000', '712cb77544.jpg', 1, '2022-05-26', 10, 100, ' ', 1, 0),
+(82, 'Móc dán điện thoại OSMIA RingCK037 Mèo Trắng', '50000', '50000', '92d84079ca.jpg', 1, '2022-05-26', 10, 100, '  ', 1, 0),
+(83, 'Đế dán điện thoại OSMIA POP002 Xanh dương', '30000', '25000', '5f45e630cc.jpg', 1, '2022-05-26', 10, 100, '  ', 1, 0),
+(84, 'Đế dán điện thoại OSMIA POP001 Cờ Đỏ', '30000', '25000', '1629ce9d6d.jpg', 1, '2022-05-26', 10, 100, '  ', 1, 0),
+(85, 'Móc dán điện thoại OSMIA RingCK036 Viền Hồng', '50000', '40000', '6d27c9733b.jpg', 1, '2022-05-26', 10, 100, '  ', 1, 0),
+(86, 'Móc dán điện thoại OSMIA RingCK034 Rose Gold', '50000', '40000', '0d237c24a4.jpg', 1, '2022-05-26', 10, 100, '  ', 1, 0),
+(87, 'Móc dán điện thoại OSMIA RingCK035 Xám', '50000', '40000', '1d967b9e80.jpg', 1, '2022-05-26', 10, 100, '  ', 1, 0),
+(88, 'Móc treo phích cắm JM HOOKWJM02', '50000', '40000', '8bfbae28f9.jpg', 1, '2022-05-26', 10, 100, '  ', 1, 0),
+(89, 'Móc treo phích cắm JM HOOKWJM01', '50000', '40000', 'c4a4c8672e.jpg', 1, '2022-05-26', 10, 100, '  ', 1, 0),
+(90, 'Móc treo điện thoại Cosano Hình Búp Bê', '40000', '30000', 'ef86faa854.jpg', 1, '2022-05-26', 10, 99, '  ', 1, 1),
+(91, 'Túi chống nước Cosano JMG-C-20 Xanh lá', '100000', '50000', '41e413344e.jpg', 1, '2022-05-26', 11, 100, '  ', 1, 0),
+(92, 'Túi chống nước Cosano JMG-C-21 Xanh biển', '100000', '50000', '580188b2fb.jpg', 1, '2022-05-26', 11, 122, ' ', 1, 1),
+(93, 'Túi chống nước Cosano 5 inch Vàng Chanh', '100000', '50000', '580aa82f51.jpg', 1, '2022-05-26', 11, 123, '  ', 1, 0),
+(94, 'Túi chống nước 5 inch Cosano Hình Chú mèo', '100000', '50000', '405b0a48ed.jpg', 1, '2022-05-26', 11, 123, '  ', 1, 0),
+(95, 'Túi chống nước 5 inch Cosano Hình Trái cây Xanh lá', '100000', '50000', '14c00d39c2.jpg', 1, '2022-05-26', 11, 123, '  ', 1, 0),
+(96, 'Túi chống nước 5 inch Cosano Hình Khiên Captain Xanh', '100000', '50000', 'fe6020d209.jpg', 1, '2022-05-26', 11, 123, '  ', 1, 0),
+(97, 'Túi chống nước 5 inch Cosano Hình Chú thỏ Hồng', '100000', '50000', '309ffc9575.jpg', 1, '2022-05-26', 11, 123, '  ', 1, 0),
+(98, 'Túi chống nước 5 inch Cosano Trong suốt', '100000', '50000', 'e7f8e62c73.jpg', 1, '2022-05-26', 6, 122, '  ', 1, 1),
+(99, 'Tai nghe Bluetooth AirPods 2 Wireless charge Apple MRXJ2 ', '5590000', '3490000', 'a19b1392ad.jpg', 1, '2022-05-26', 12, 99, '<b>Thông số kỹ thuật:</b> \r\n<br> - Thời gian tai nghe: Dùng 5 giờ - Sạc 2 giờ\r\n<br> - Thời gian hộp sạc: Dùng 24 giờ - Sạc 3 giờ\r\n<br> - Cổng sạc: Lightning, Sạc không dây\r\n<br> - Công nghệ âm thanh: Chip Apple H1\r\n<br> - Tương thích: Android, IOS (iPhone)\r\n<br> - Tiện ích: Có mic thoại\r\n<br> - Hỗ trợ kết nối: Bluetooth 5.0\r\n<br> - Điều khiển bằng: Cảm ứng chạm\r\n<br> - Hãng Apple', 1, 1),
+(100, 'Tai nghe Bluetooth AirPods Pro MagSafe Charge Apple MLWK3 Trắng', '6790000', '5190000', '93eda2c3ec.jpg', 1, '2022-05-26', 12, 99, '<b>Thông số kỹ thuật:</b> \r\n<br> - Pin: Dùng 5 giờ - Sạc 2 giờ\r\n<br> - Cổng sạc: Lightning, Sạc không dây, Sạc MagSafe\r\n<br> - Công nghệ âm thanh: Active Noise CancellationAdaptive EQCustom high-excursion Apple driverHigh Dynamic RangeSpatial AudioTransparency Mode\r\n<br> - Tương thích: Android, IOS (iPhone), iPadOS (iPad), MacOS (Macbook, iMac)\r\n<br> - Tiện ích: Chống nước IPX4Chống ồnCó mic thoại\r\n<br> - Hỗ trợ kết nối: Bluetooth 5.0\r\n<br> - Điều khiển bằng: Cảm ứng chạm\r\n<br> - Hãng Apple. ', 1, 1),
+(101, 'Tai nghe Bluetooth AirPods 3 Apple MME73 Trắng', '5490000', '4490000', '968abb4093.jpeg', 1, '2022-05-26', 12, 99, '<b>Thông số kỹ thuật:</b> \r\n<br> - Pin: Dùng 6 giờ - Sạc 2 giờ\r\n<br> - Cổng sạc: Lightning, Sạc không dây\r\n<br> - Công nghệ âm thanh: Adaptive EQCustom high-excursion Apple driverHigh Dynamic RangeSpatial Audio\r\n<br> - Tương thích: Android, iOS (iPhone), iPadOS (iPad), MacOS (Macbook, iMac)\r\n<br> - Tiện ích: Chống nước IPX4, Có mic thoại, Sạc không dây\r\n<br> - Hỗ trợ kết nối: Bluetooth 5.0\r\n<br> - Điều khiển bằng: Cảm ứng chạm\r\n<br> - Hãng Apple. Xem thông tin hãng', 1, 1),
+(102, 'Tai nghe Bluetooth True Wireless Galaxy Buds Pro Bạc', '4990000', '2490000', '67417a99ec.jpeg', 1, '2022-05-26', 12, 100, '<b>Thông số kỹ thuật:</b> \r\n<br> - Thời gian tai nghe: Dùng 8 giờ - Sạc 3 giờ\r\n<br> - Thời gian hộp sạc: Dùng 20 giờ - Sạc 3 giờ\r\n<br> - Cổng sạc: Sạc không dây, Type-C\r\n<br> - Công nghệ âm thanh: Active Noise Cancellation, Dolby Head Tracking\r\n<br> - Tương thích: Android, IOS (iPhone)Windows\r\n<br> - Ứng dụng kết nối: SmartThings\r\n<br> - Tiện ích: Chống nước IPX7, Chống ồn, Có mic thoại\r\n<br> - Hỗ trợ kết nối: Bluetooth 5.0\r\n<br> - Điều khiển bằng: Cảm ứng chạm\r\n<br> - Hãng Samsung. ', 1, 0),
+(103, 'Tai nghe Bluetooth True Wireless JBL T115TWS', '1490000', '990000', '743abf4bd5.jpeg', 1, '2022-05-26', 12, 100, '<b>Thông số kỹ thuật:</b> \r\n<br> - Thời gian tai nghe: Dùng 6 giờ - Sạc 2 giờ\r\n<br> - Thời gian hộp sạc: Dùng 15 giờ - Sạc 2 giờ\r\n<br> - Cổng sạc: Type-C\r\n<br> - Công nghệ âm thanh: JBL Pure Bass\r\n<br> - Tương thích: Android, iOS (iPhone)Windows\r\n<br> - Tiện ích: Có mic thoại, Sạc nhanh, Đệm tai đi kèm\r\n<br> - Hỗ trợ kết nối: Bluetooth 5.0\r\n<br> - Điều khiển bằng: Phím nhấn\r\n<br> - Hãng JBL. Xem thông tin hãng', 1, 0),
+(104, 'Tai nghe Bluetooth True Wireless OPPO ENCO Air 2 ETE11', '1590000', '1351000', '340df0b397.jpg', 1, '2022-05-26', 12, 99, '<b>Thông số kỹ thuật:</b> \r\n<br> - Thời gian tai nghe: Dùng 4 giờ - Sạc 1.5 giờ\r\n<br> - Thời gian hộp sạc: Dùng 24 giờ - Sạc 2 giờ\r\n<br> - Cổng sạc: Type-C\r\n<br> - Công nghệ âm thanh: codecAAC, codecSBC\r\n<br> - Tương thích: Android, iOS, WindowsMacOS\r\n<br> - Ứng dụng kết nối: HeyMelody App\r\n<br> - Tiện ích: Chống nước IPX4, Game Mode, Hỗ trợ chụp ảnh, Kết nối 1 chạm Fast Pair, Sử dụng độc lập 1 bên tai nghe\r\n<br> - Hỗ trợ kết nối: Bluetooth 5.2\r\n<br> - Điều khiển bằng: Cảm ứng chạm\r\n<br> - Hãng OPPO. ', 1, 1),
+(105, 'Tai nghe Bluetooth True Wireless AVA+ DS200A-WB', '650000', '399000', 'aa38b6596c.png', 1, '2022-05-27', 12, 100, '<b>Thông số kỹ thuật:</b> \r\n<br> - Thời gian tai nghe: Dùng 4 giờ - Sạc 1.5 giờ\r\n<br> - Thời gian hộp sạc: Dùng 12 giờ - Sạc 1.5 giờ\r\n<br> - Cổng sạc: Micro USB\r\n<br> - Tương thích: Android, iOS (iPhone). iPadOS (iPad), MacOS (Macbook, iMac), Windows\r\n<br> - Tiện ích: Có mic thoại\r\n<br> - Hỗ trợ kết nối: Bluetooth 5.0\r\n<br> - Điều khiển bằng: Phím nhấn\r\n<br> - Hãng AVA+. ', 1, 0),
+(106, 'Tai nghe Bluetooth True Wireless Sony WF-C500', '2290000', '2080000', 'e6ea3562f1.jpg', 1, '2022-05-27', 12, 100, '<b>Thông số kỹ thuật:</b> \r\n<br> - Thời gian tai nghe: Dùng 10 giờ - Sạc 2.5 giờ\r\n<br> - Thời gian hộp sạc: Dùng 20 giờ - Sạc 3 giờ\r\n<br> - Cổng sạc: Type-C\r\n<br> - Công nghệ âm thanh: 360 Reality AudioDSEE\r\n<br> - Tương thích: Android, iOS, Windows, MacOS (Macbook, iMac)\r\n<br> - Ứng dụng kết nối: Sony Headphones Connect\r\n<br> - Tiện ích: Chống nước IPX4, Có mic thoại, Kết nối 1 chạm Fast Pair, Sử dụng độc lập 1 bên tai nghe\r\n<br> - Hỗ trợ kết nối: Bluetooth 5.0\r\n<br> - Điều khiển bằng: Phím nhấn\r\n<br> - Hãng Sony. ', 1, 0),
+(107, 'Tai nghe Bluetooth True Wireless Rezo F15', '800000', '480000', 'b94f08bce8.jpeg', 1, '2022-05-27', 12, 100, '<b>Thông số kỹ thuật:</b> \r\n<br> - Thời gian tai nghe: Dùng 4 giờ - Sạc 1.5 giờ\r\n<br> - Thời gian hộp sạc: Dùng 20 giờ - Sạc 1.5 giờ\r\n<br> - Cổng sạc: Type-C\r\n<br> - Tương thích: Android, iOS, Windows, MacOS (Macbook, iMac)\r\n<br> - Tiện ích: Chống nước IPX5, Có mic thoại, Sử dụng độc lập 1 bên tai nghe\r\n<br> - Hỗ trợ kết nối: Bluetooth 5.0\r\n<br> - Điều khiển bằng: Cảm ứng chạm\r\n<br> - Hãng Rezo. ', 1, 0),
+(108, 'Tai nghe Bluetooth True Wireless Hydrus TS12BC', '500000', '220', 'c23a2411eb.jpg', 1, '2022-05-27', 12, 100, '<b>Thông số kỹ thuật:</b> \r\n<br> - Thời gian tai nghe: Dùng 3.5 giờ - Sạc 1 giờ\r\n<br> - Thời gian hộp sạc: Dùng 12 giờ - Sạc 1.5 giờ\r\n<br> - Cổng sạc: Type-C\r\n<br> - Tương thích: Android, iOS (iPhone), MacOS (Macbook, iMac), Windows\r\n<br> - Tiện ích: Đệm tai đi kèm\r\n<br> - Hỗ trợ kết nối: Bluetooth 5.0\r\n<br> - Điều khiển bằng: Phím nhấn\r\n<br> - Hãng Hydrus. ', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -199,8 +307,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `fullname`, `dob`, `password`, `role_id`, `status`, `address`, `isConfirmed`, `captcha`) VALUES
-(1, 'admin@gmail.com', 'Admin', '0000-00-00', 'e10adc3949ba59abbe56e057f20f883e', 1, 1, '', 1, ''),
-(31, 'viettrungcntt03@gmail.com', 'Nguyễn Việt Trung', '2001-09-30', 'c4ca4238a0b923820dcc509a6f75849b', 2, 1, 'Thái Nguyên', 1, '56661');
+(1, 'admin@gmail.com', 'Admin', '0000-00-00', '0cc175b9c0f1b6a831c399e269772661', 1, 1, '', 1, ''),
+(2, 'viettrungcntt03@gmail.com', 'Nguyễn Việt Trung', '2001-09-30', '0cc175b9c0f1b6a831c399e269772661', 2, 1, 'Thái Nguyên', 1, '56666'),
+(35, 'huong@gmail.com', 'Chu Bá Hưởng', '0000-00-00', '0cc175b9c0f1b6a831c399e269772661', 2, 1, 'Minh Khai, Bắc Từ Liêm, Hà Nội', 1, '87909');
 
 --
 -- Indexes for dumped tables
@@ -263,31 +372,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -299,7 +408,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- Constraints for dumped tables

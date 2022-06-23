@@ -25,6 +25,15 @@ $userInfo = $user->get();
     <script src="https://use.fontawesome.com/2145adbb48.js"></script>
     <script src="https://kit.fontawesome.com/a42aeb5b72.js" crossorigin="anonymous"></script>
     <title>Checkout</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script>
+        $(function() {
+            $('.fadein img:gt(0)').hide();
+            setInterval(function() {
+                $('.fadein :first-child').fadeOut().next('img').fadeIn().end().appendTo('.fadein');
+            }, 5000);
+        });
+    </script>
 </head>
 
 <body>
@@ -51,7 +60,22 @@ $userInfo = $user->get();
             </li>
         </ul>
     </nav>
-    <section class="banner"></section>
+        <section class="banner">
+        <div class="fadein">
+            <?php
+            // display images from directory
+            // directory path
+            $dir = "./images/slider/";
+
+            $scan_dir = scandir($dir);
+            foreach ($scan_dir as $img) :
+                if (in_array($img, array('.', '..')))
+                    continue;
+            ?>
+                <img src="<?php echo $dir . $img ?>" alt="<?php echo $img ?>">
+            <?php endforeach; ?>
+        </div>
+    </section>
     <div class="featuredProducts">
         <h1>Giỏ hàng</h1>
     </div>

@@ -102,12 +102,25 @@ class product
             "SELECT *
 			 FROM products
 			 WHERE products.status = 1
-             order by products.soldCount DESC
-             LIMIT 8";
+             order by products.soldCount DESC";
         $result = $this->db->select($query);
         return $result;
     }
 
+    public function getProductByName($name_product)
+    {
+        $query =
+            "SELECT *
+			 FROM products
+			 WHERE name LIKE '%$name_product%'";
+        $mysqli_result = $this->db->select($query);
+        if ($mysqli_result) {
+            $result = mysqli_fetch_all($mysqli_result, MYSQLI_ASSOC);
+            return $result;
+        }
+        return false;
+    }
+    
     public function getProductsByCateId($page = 1, $cateId, $total = 8)
     {
         if ($page <= 0) {

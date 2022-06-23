@@ -22,6 +22,15 @@ $list = mysqli_fetch_all($product->getFeaturedProducts(), MYSQLI_ASSOC);
     <script src="https://use.fontawesome.com/2145adbb48.js"></script>
     <script src="https://kit.fontawesome.com/a42aeb5b72.js" crossorigin="anonymous"></script>
     <title>Trang chủ</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script>
+        $(function() {
+            $('.fadein img:gt(0)').hide();
+            setInterval(function() {
+                $('.fadein :first-child').fadeOut().next('img').fadeIn().end().appendTo('.fadein');
+            }, 5000);
+        });
+    </script>
 </head>
 
 <body>
@@ -48,20 +57,35 @@ $list = mysqli_fetch_all($product->getFeaturedProducts(), MYSQLI_ASSOC);
             </li>
         </ul>
     </nav>
-    <section class="banner"></section>
+    <section class="banner">
+        <div class="fadein">
+            <?php
+            // display images from directory
+            // directory path
+            $dir = "./images/slider/";
+
+            $scan_dir = scandir($dir);
+            foreach ($scan_dir as $img) :
+                if (in_array($img, array('.', '..')))
+                    continue;
+            ?>
+                <img src="<?php echo $dir . $img ?>" alt="<?php echo $img ?>">
+            <?php endforeach; ?>
+        </div>
+    </section>
     <div class="featuredProducts">
-        <h1>Sản phẩm nổi bật</h1>
+        <h1>Tất cả sản phẩm</h1>
     </div>
     <div class="container" style="grid-template-columns: auto auto auto auto;">
         <?php
         foreach ($list as $key => $value) { ?>
             <div class="card">
                 <div class="imgBx">
-                    <a href="detail.php?id=<?= $value['id'] ?>"><img src="admin/uploads/<?= $value['image'] ?>" alt=""></a>
+                    <a href="detail.php?id=<?= $value['id'] ?>"><img src="admin/uploads/<?= $value['image'] ?>" alt="" title="<?= $value['name'] ?>"></a>
                 </div>
                 <div class="content">
                     <div class="productName">
-                        <a href="detail.php?id=<?= $value['id'] ?>">
+                        <a href="detail.php?id=<?= $value['id'] ?>" title="<?= $value['name'] ?>">
                             <h3><?= $value['name'] ?></h3>
                         </a>
                     </div>

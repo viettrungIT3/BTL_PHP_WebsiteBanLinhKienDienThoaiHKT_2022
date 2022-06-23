@@ -34,6 +34,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $product = new product();
 $list = $product->getAllAdmin((isset($_GET['page']) ? $_GET['page'] : 1));
 $pageCount = $product->getCountPaging();
+
+if (isset($_GET['search'])) {
+    $search = addslashes($_GET['search']);
+    if (empty($search)) {
+        echo '<script type="text/javascript">alert("Yêu cầu dữ liệu không được để trống!");</script>';
+    } else {
+        $list = $product->getProductByName($search);
+        // echo '<script type="text/javascript">alert("Tính năng này đang bảo trì");</script>';
+    }
+} 
 ?>
 
 <!DOCTYPE html>
@@ -61,13 +71,20 @@ $pageCount = $product->getCountPaging();
             <li><a href="productlist.php" class="active">Quản lý Sản phẩm</a></li>
             <li><a href="categoriesList.php">Quản lý Danh mục</a></li>
             <li><a href="orderlist.php">Quản lý Đơn hàng</a></li>
+            <li><a href="userlist.php">Quản lý Người dùng</a></li>
         </ul>
     </nav>
     <div class="title">
         <h1>Danh sách sản phẩm</h1>
     </div>
-    <div class="addNew">
-        <a href="add_product.php">Thêm mới</a>
+    <div class="control-container">
+        <div class="addNew">
+            <a href="add_product.php">Thêm mới</a>
+        </div>
+        <form class="c-search" action="" method="get">
+            <input type="text" name="search" placeholder="Nhập tên sản phẩm">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
     </div>
     <div class="container">
         <?php $count = 1;
@@ -102,7 +119,7 @@ $pageCount = $product->getCountPaging();
                                 <form action="productlist.php" method="post">
                                     <input type="text" name="id" hidden value="<?= $value['id'] ?>" style="display: none;">
                                     <input type="submit" value="Khóa" name="block">
-                                <!-- </form>
+                                    <!-- </form>
                                 <form action="productlist.php" method="post">
                                     <input type="text" name="id" hidden value="<?= $value['id'] ?>" style="display: none;"> -->
                                     <!-- <input type="submit" value="Xóa" name="delete"> -->

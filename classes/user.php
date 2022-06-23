@@ -22,14 +22,19 @@ class user
 
 	public function login($email, $password)
 	{
-		$query = "SELECT * FROM users WHERE email = '$email' AND password = '$password' LIMIT 1 ";
+		$query = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
 		$result = $this->db->select($query);
 		if ($result) {
 			$value = $result->fetch_assoc();
-			Session::set('user', true);
-			Session::set('userId', $value['id']);
-			Session::set('role_id', $value['role_id']);
-			header("Location:index.php");
+			if ($value['status'] == 0 || $value['isConfirmed'] == 0) {
+				$alert = "Tài khoản bạn đang bị khóa hoặc chưa được xác nhận. Vui lòng liên hệ với ADMIN để được xử lý!";
+				return $alert;
+			} else {
+				Session::set('user', true);
+				Session::set('userId', $value['id']);
+				Session::set('role_id', $value['role_id']);
+				header("Location:index.php");
+			}
 		} else {
 			$alert = "Tên đăng nhập hoặc mật khẩu không đúng!";
 			return $alert;
@@ -65,7 +70,7 @@ class user
 				$mail->SMTPAuth   = TRUE;
 				$mail->SMTPSecure = "tls";
 				$mail->Port       = 587;
-				$mail->Host       = "smtp.gmail.com";
+				$mail->Host       = "admin@gmail.com";
 				$mail->Username   = "viettrungcntt03@gmail.com";
 				$mail->Password   = "googleviettrungcntt03";
 
@@ -96,6 +101,54 @@ class user
 		}
 		return false;
 	}
+	public function getAllAdmin($page = 1, $total = 8)
+	{
+		if ($page <= 0) {
+			$page = 1;
+		}
+		$tmp = ($page - 1) * $total;
+		$query =
+			"SELECT users.*, role.name as roleName
+			 FROM users INNER JOIN role ON users.role_id = role.id
+             limit $tmp,$total";
+		$result = $this->db->select($query);
+		return $result;
+	}
+
+	public function getAll()
+	{
+		$query =
+			"SELECT users.*, role.name as cateName
+			 FROM users INNER JOIN role ON users.role_id = role.id";
+		$result = $this->db->select($query);
+		return $result;
+	}
+
+	public function getCountPaging($row = 8)
+	{
+		$query = "SELECT COUNT(*) FROM users";
+		$mysqli_result = $this->db->select($query);
+		if ($mysqli_result) {
+			$totalrow = intval((mysqli_fetch_all($mysqli_result, MYSQLI_ASSOC)[0])['COUNT(*)']);
+			$result = ceil($totalrow / $row);
+			return $result;
+		}
+		return false;
+	}
+
+	public function getUserByName($name_u)
+	{
+		$query =
+			"SELECT *
+			 FROM users
+			 WHERE fullname LIKE '%$name_u%'";
+		$mysqli_result = $this->db->select($query);
+		if ($mysqli_result) {
+			$result = mysqli_fetch_all($mysqli_result, MYSQLI_ASSOC);
+			return $result;
+		}
+		return false;
+	}
 
 	public function getLastUserId()
 	{
@@ -121,6 +174,38 @@ class user
 			}
 		}
 		return 'Mã xác minh không đúng!';
+	}
+
+	public function block($id)
+	{
+		$query = "UPDATE users SET status = 0 where id = '$id' and role_id = 2 ";
+		$result = $this->db->delete($query);
+		if ($result) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function delete($id)
+	{
+		$query = "DELETE FROM users WHERE id = $id";
+		$row = $this->db->delete($query);
+		if ($row) {
+			return true;
+		}
+		return false;
+	}
+
+	public function active($id)
+	{
+		$query = "UPDATE users SET status = 1 where id = '$id'  and role_id = 2 ";
+		$result = $this->db->delete($query);
+		if ($result) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
 ?>

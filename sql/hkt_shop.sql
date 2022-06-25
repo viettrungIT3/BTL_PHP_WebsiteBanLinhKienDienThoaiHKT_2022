@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2022 at 10:14 PM
+-- Generation Time: Jun 25, 2022 at 11:35 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -47,7 +47,8 @@ INSERT INTO `cart` (`id`, `userId`, `productId`, `qty`, `productName`, `productP
 (59, 35, 64, 1, 'Dây đeo điện thoại OSMIA silicon CRS ', '30000', '362dbff9ea.jpg'),
 (60, 35, 88, 1, 'Móc treo phích cắm JM HOOKWJM02', '40000', '8bfbae28f9.jpg'),
 (61, 35, 101, 1, 'Tai nghe Bluetooth AirPods 3 Apple MME73 Trắng', '4490000', '968abb4093.jpeg'),
-(62, 35, 98, 1, 'Túi chống nước 5 inch Cosano Trong suốt', '50000', 'e7f8e62c73.jpg');
+(62, 35, 98, 1, 'Túi chống nước 5 inch Cosano Trong suốt', '50000', 'e7f8e62c73.jpg'),
+(76, 1, 28, 1, 'Adapter Sạc USB Hydrus ACL2018', '100000', 'b52eabed75.jpeg');
 
 -- --------------------------------------------------------
 
@@ -96,7 +97,7 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`id`, `userId`, `createdDate`, `receivedDate`, `status`) VALUES
 (40, 1, '2022-05-19', '2022-05-25', 'Complete'),
 (41, 1, '2022-05-19', NULL, 'Processing'),
-(42, 1, '2022-05-20', '2022-05-23', 'Delivering'),
+(42, 1, '2022-05-20', '2022-06-23', 'Complete'),
 (43, 1, '2022-05-25', NULL, 'Processing'),
 (44, 35, '2022-05-26', '2022-05-26', 'Complete'),
 (45, 35, '2022-05-26', '2022-05-26', 'Complete'),
@@ -309,7 +310,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `email`, `fullname`, `dob`, `password`, `role_id`, `status`, `address`, `isConfirmed`, `captcha`) VALUES
 (1, 'admin@gmail.com', 'Admin', '0000-00-00', '0cc175b9c0f1b6a831c399e269772661', 1, 1, '', 1, ''),
 (2, 'viettrungcntt03@gmail.com', 'Nguyễn Việt Trung', '2001-09-30', '0cc175b9c0f1b6a831c399e269772661', 2, 1, 'Thái Nguyên', 1, '56666'),
-(35, 'huong@gmail.com', 'Chu Bá Hưởng', '0000-00-00', '0cc175b9c0f1b6a831c399e269772661', 2, 1, 'Minh Khai, Bắc Từ Liêm, Hà Nội', 1, '87909');
+(35, 'huong@gmail.com', 'Chu Bá Hưởng', '2001-11-30', '0cc175b9c0f1b6a831c399e269772661', 2, 1, 'Minh Khai, Bắc Từ Liêm, Hà Nội', 1, '87909');
 
 --
 -- Indexes for dumped tables
@@ -372,7 +373,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -408,7 +409,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Constraints for dumped tables

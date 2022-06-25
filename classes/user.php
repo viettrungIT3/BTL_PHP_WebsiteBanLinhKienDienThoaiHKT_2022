@@ -77,9 +77,9 @@ class user
 				$mail->IsHTML(true);
 				$mail->CharSet = 'UTF-8';
 				$mail->AddAddress($email, "recipient-name");
-				$mail->SetFrom("viettrungcntt03@gmail.com", "Instrument Store");
-				$mail->Subject = "Xác nhận email tài khoản - Instruments Store";
-				$mail->Body = "<h3>Cảm ơn bạn đã đăng ký tài khoản tại website InstrumentStore</h3></br>Đây là mã xác minh tài khoản của bạn: " . $captcha . "";
+				$mail->SetFrom("viettrungcntt03@gmail.com", "HKT-shop");
+				$mail->Subject = "Xác nhận email tài khoản - HKT-shop";
+				$mail->Body = "<h3>Cảm ơn bạn đã đăng ký tài khoản tại website HKT-shop </h3></br>Đây là mã xác minh tài khoản của bạn: " . $captcha . "";
 
 				$mail->Send();
 
@@ -88,6 +88,20 @@ class user
 				return false;
 			}
 		}
+	}
+
+	public function update($data)
+	{
+		$userId = Session::get('userId');
+		$fullName = $data['fullName'];
+		$email = $data['email'];
+		$dob = $data['dob'];
+		$address = $data['address'];
+		$password = md5($data['password']);
+
+		$query = "UPDATE users SET email = '$email', fullname = '$fullName', dob = '$dob', password = '$password', address = '$address' WHERE id = '$userId' ";
+		$result = $this->db->update($query);
+		return $result;
 	}
 
 	public function get()
@@ -101,6 +115,14 @@ class user
 		}
 		return false;
 	}
+
+	public function getUserById($id)
+	{
+		$query = "SELECT * FROM users where id = '$id'";
+		$result = $this->db->select($query);
+		return $result;
+	}
+
 	public function getAllAdmin($page = 1, $total = 8)
 	{
 		if ($page <= 0) {

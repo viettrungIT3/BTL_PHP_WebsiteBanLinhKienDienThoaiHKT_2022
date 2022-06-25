@@ -1,15 +1,27 @@
 <?php
+include 'classes/user.php';
+$user = new user();
+$userInfo = $user->get();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+    $result = $user->update($_POST);
+    if ($result) {
+        echo '<script type="text/javascript">alert("Cập nhật thông tin cá nhân thành công!"); history.back();</script>';
+        header("Location:./info.php");
+    } else {
+        echo '<script type="text/javascript">alert("Cập nhật thông tin cá nhân thất bại!"); history.back();</script>';
+        header("Location:./info.php");
+    }
+}
+?>
+
+<?php
 include_once 'lib/session.php';
-Session::checkSession('client');
-include 'classes/order.php';
+include_once 'classes/product.php';
 include_once 'classes/cart.php';
 
 $cart = new cart();
 $totalQty = $cart->getTotalQtyByUserId();
-
-$order = new order();
-$result = $order->getOrderByUser();
-
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +35,7 @@ $result = $order->getOrderByUser();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://use.fontawesome.com/2145adbb48.js"></script>
     <script src="https://kit.fontawesome.com/a42aeb5b72.js" crossorigin="anonymous"></script>
-    <title>Order</title>
+    <title>Cập nhật thông tin cá nhân</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script>
         $(function() {
@@ -42,7 +54,7 @@ $result = $order->getOrderByUser();
             <li><a href="index.php">Trang chủ</a></li>
             <li><a href="productList.php">Sản phẩm</a></li>
 
-            <li><a href="order.php" id="order" class="active">Đơn hàng</a></li>
+            <li><a href="order.php" id="order">Đơn hàng</a></li>
             <li>
                 <a href="checkout.php">
                     Giỏ hàng
@@ -54,7 +66,7 @@ $result = $order->getOrderByUser();
             </li>
             <?php
             if (isset($_SESSION['user']) && $_SESSION['user']) { ?>
-                <li><a href="info.php" id="signin">Thông tin cá nhân</a></li>
+                <li><a href="info.php" id="signin" class="active">Thông tin cá nhân</a></li>
                 <li><a href="logout.php" id="signin">Đăng xuất</a></li>
             <?php } else { ?>
                 <li><a href="register.php" id="signup">Đăng ký</a></li>
@@ -73,57 +85,43 @@ $result = $order->getOrderByUser();
             foreach ($scan_dir as $img) :
                 if (in_array($img, array('.', '..')))
                     continue;
-            ?>
+            ?> 
                 <img src="<?php echo $dir . $img ?>" alt="<?php echo $img ?>">
             <?php endforeach; ?>
         </div>
     </section>
     <div class="featuredProducts">
-        <h1>Đơn hàng</h1>
+        <h1>Chỉnh sửa thông tin cá nhân</b></h1>
     </div>
     <div class="container-single">
-        <?php if ($result) { ?>
-            <table class="order">
-                <tr>
-                    <th>STT</th>
-                    <th>Mã đơn hàng</th>
-                    <th>Ngày đặt</th>
-                    <th>Ngày giao</th>
-                    <th>Tình trạng</th>
-                    <th>Thao tác</th>
-                </tr>
-                <?php $count = 1;
-                foreach ($result as $key => $value) { ?>
-                    <tr>
-                        <td><?= $count++ ?></td>
-                        <td><?= $value['id'] ?></td>
-                        <td><?= $value['createdDate'] ?></td>
-                        <td><?= ($value['status'] != "Processing") ? $value['receivedDate'] : "Dự kiến 3 ngày sau khi đơn hàng đã được xử lý" ?> <?= ($value['status'] != "Complete" && $value['status'] != "Processing") ? "(Dự kiến)" : "" ?> </td>
-                        <?php
-                        if ($value['status'] == 'Delivering') { ?>
-                            <td>
-                                <a href="complete_order.php?orderId=<?= $value['id'] ?>">Đang giao (Click vào để xác nhận đã nhận)</a>
-                            </td>
-                            <td>
-                                <a href="orderdetail.php?orderId=<?= $value['id'] ?>">Chi tiết</a>
-                            </td>
-                        <?php } else { ?>
-                            <td>
-                                <?= $value['status'] ?>
-                            </td>
-                            <td>
-                                <a href="orderdetail.php?orderId=<?= $value['id'] ?>">Chi tiết</a>
-                            </td>
-                        <?php }
-                        ?>
-                    </tr>
-                <?php } ?>
-            </table>
-        <?php } else { ?>
-            <h3>Đơn hàng hiện đang rỗng</h3>
-        <?php } ?>
+        
+        <div class="login">
+            <form action="edit_info.php" method="post" class="form-login">
+                <label for="fullName">Họ tên</label>
+                <input type="text" id="fullName" value="<?= $userInfo['fullname'] ?>" name="fullName" placeholder="Họ tên..." required>
 
+                <label for="email">Email</label>
+                <p class="error"><?= !empty($result) ? $result : '' ?></p>
+                <input type="email" id="email" value="<?= $userInfo['email'] ?>" name="email" placeholder="Email..." required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
 
+                <label for="password">Mật khẩu</label>
+                <input type="password" id="password" name="password" placeholder="Mật khẩu..." required>
+
+                <label for="repassword">Nhập lại mật khẩu</label>
+                <input type="password" id="repassword" name="repassword" required placeholder="Nhập lại mật khẩu..." oninput="check(this)">
+
+                <label for="address">Địa chỉ</label>
+                <textarea name="address" id="address" cols="30" rows="5" required><?= $userInfo['address'] ?></textarea>
+
+                <label for="dob">Ngày sinh</label>
+                <input type="date" value="<?= $userInfo['dob'] ?>" name="dob" id="dob" required>
+
+                <div>
+                    <input type="submit" value="Cập nhật" name="submit">
+                    <button><a href="./info.php">Hủy bỏ</a></button>
+                </div>
+            </form>
+        </div>
     </div>
     </div>
     <footer>
@@ -143,5 +141,14 @@ $result = $order->getOrderByUser();
         <p class="copyright">copy by HKT-SHOP.com 2022</p>
     </footer>
 </body>
+<script language='javascript' type='text/javascript'>
+    function check(input) {
+        if (input.value != document.getElementById('password').value) {
+            input.setCustomValidity('Password Must be Matching.');
+        } else {
+            input.setCustomValidity('');
+        }
+    }
+</script>
 
 </html>

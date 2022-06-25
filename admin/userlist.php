@@ -105,7 +105,9 @@ if (isset($_GET['search'])) {
                         <td><?= $value['dob'] ?></td>
                         <td style="text-align: left; padding-left: 6px;"><?= $value['address'] ?></td>
                         <td style="text-align: left; padding-left: 6px;"><?= $value['email'] ?></td>
-                        <td><?= $value['roleName'] ?></td>
+                        <td><?php if ($value['role_id'] == 1) {
+                                echo "Admin";
+                            } else echo "Khách hàng" ?></td>
                         <td><?= ($value['status']) ? "Active" : "Block" ?></td>
                         <td>
                             <?php

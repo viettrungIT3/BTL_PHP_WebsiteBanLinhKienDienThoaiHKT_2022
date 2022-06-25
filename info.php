@@ -1,15 +1,14 @@
 <?php
 include_once 'lib/session.php';
-Session::checkSession('client');
-include 'classes/order.php';
+include_once 'classes/product.php';
 include_once 'classes/cart.php';
+include 'classes/user.php';
+
+$user = new user();
+$userInfo = $user->get();
 
 $cart = new cart();
 $totalQty = $cart->getTotalQtyByUserId();
-
-$order = new order();
-$result = $order->getOrderByUser();
-
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +22,31 @@ $result = $order->getOrderByUser();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <script src="https://use.fontawesome.com/2145adbb48.js"></script>
     <script src="https://kit.fontawesome.com/a42aeb5b72.js" crossorigin="anonymous"></script>
-    <title>Order</title>
+    <title>Trang chủ</title>
+    <style>
+        table,
+        tr,
+        td {
+            border: none;
+            /* background-color: #fff; */
+            margin: 0;
+            padding: 0;
+            text-align: left;
+            font-size: 18px;
+        }
+
+        td {
+            margin: 10px;
+            padding: 10px;
+        }
+
+        .container-info {
+            width: 60%;
+            display: flex;
+            justify-content: center;
+            flex: 1;
+        }
+    </style>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script>
         $(function() {
@@ -42,7 +65,7 @@ $result = $order->getOrderByUser();
             <li><a href="index.php">Trang chủ</a></li>
             <li><a href="productList.php">Sản phẩm</a></li>
 
-            <li><a href="order.php" id="order" class="active">Đơn hàng</a></li>
+            <li><a href="order.php" id="order">Đơn hàng</a></li>
             <li>
                 <a href="checkout.php">
                     Giỏ hàng
@@ -54,7 +77,7 @@ $result = $order->getOrderByUser();
             </li>
             <?php
             if (isset($_SESSION['user']) && $_SESSION['user']) { ?>
-                <li><a href="info.php" id="signin">Thông tin cá nhân</a></li>
+                <li><a href="info.php" id="signin" class="active">Thông tin cá nhân</a></li>
                 <li><a href="logout.php" id="signin">Đăng xuất</a></li>
             <?php } else { ?>
                 <li><a href="register.php" id="signup">Đăng ký</a></li>
@@ -79,52 +102,43 @@ $result = $order->getOrderByUser();
         </div>
     </section>
     <div class="featuredProducts">
-        <h1>Đơn hàng</h1>
+        <h1>Thông tin cá nhân</h1>
     </div>
     <div class="container-single">
-        <?php if ($result) { ?>
-            <table class="order">
-                <tr>
-                    <th>STT</th>
-                    <th>Mã đơn hàng</th>
-                    <th>Ngày đặt</th>
-                    <th>Ngày giao</th>
-                    <th>Tình trạng</th>
-                    <th>Thao tác</th>
-                </tr>
-                <?php $count = 1;
-                foreach ($result as $key => $value) { ?>
+        <div class="container-info">
+            <div class="image-info">
+                <img src="./images/avt.png" alt="">
+            </div>
+            <div class="info">
+                <table>
                     <tr>
-                        <td><?= $count++ ?></td>
-                        <td><?= $value['id'] ?></td>
-                        <td><?= $value['createdDate'] ?></td>
-                        <td><?= ($value['status'] != "Processing") ? $value['receivedDate'] : "Dự kiến 3 ngày sau khi đơn hàng đã được xử lý" ?> <?= ($value['status'] != "Complete" && $value['status'] != "Processing") ? "(Dự kiến)" : "" ?> </td>
-                        <?php
-                        if ($value['status'] == 'Delivering') { ?>
-                            <td>
-                                <a href="complete_order.php?orderId=<?= $value['id'] ?>">Đang giao (Click vào để xác nhận đã nhận)</a>
-                            </td>
-                            <td>
-                                <a href="orderdetail.php?orderId=<?= $value['id'] ?>">Chi tiết</a>
-                            </td>
-                        <?php } else { ?>
-                            <td>
-                                <?= $value['status'] ?>
-                            </td>
-                            <td>
-                                <a href="orderdetail.php?orderId=<?= $value['id'] ?>">Chi tiết</a>
-                            </td>
-                        <?php }
-                        ?>
+                        <td>Họ và tên: </td>
+                        <td><?= $userInfo['fullname'] ?></td>
                     </tr>
-                <?php } ?>
-            </table>
-        <?php } else { ?>
-            <h3>Đơn hàng hiện đang rỗng</h3>
-        <?php } ?>
-
-
-    </div>
+                    <tr>
+                        <td>Email: </td>
+                        <td><?= $userInfo['email'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>Ngày sinh: </td>
+                        <td><?= $userInfo['dob'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>Địa chỉ: </td>
+                        <td><?= $userInfo['address'] ?></td>
+                    </tr>
+                    <tr>
+                        <td>Chức vụ: </td>
+                        <td><?php if ($userInfo['role_id'] == 1) {
+                                echo "Admin";
+                            } else echo "Khách hàng" ?></td>
+                    </tr>
+                </table>
+                <?php if ($userInfo['role_id'] == 1) {
+                    echo '<div><a href="./admin/index.php">Chuyển sang trang Admin</a></div>';
+                } else echo '<div><a href="edit_info.php">Chỉnh sửa thông tin cá nhân</a></div>'; ?>
+            </div>
+        </div>
     </div>
     <footer>
         <div class="social">

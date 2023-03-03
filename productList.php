@@ -162,22 +162,12 @@ $categoriesList = $categories->getAll();
         ?>
         <a href="productList.php?page=<?= (isset($_GET['page'])) ? $_GET['page'] + 1 : 2 ?>&cateId=<?= (isset($_GET['cateId'])) ? $_GET['cateId'] : 2 ?>">&raquo;</a>
     </div>
-    <footer>
-        <div class="social">
-            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-        </div>
-        <ul class="list">
-            <li>
-                <a href="./">Trang Chủ</a>
-            </li>
-            <li>
-                <a href="productList.php">Sản Phẩm</a>
-            </li>
-        </ul>
-        <p class="copyright">copy by HKT-SHOP.com 2022</p>
-    </footer>
+
+    <!-- footer -->
+    <?php
+        include 'footer.php';
+    ?>
+
 </body>
 
 </html>

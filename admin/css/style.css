@@ -252,3 +252,7 @@ footer .copyright{
   background-color: dodgerblue;
   color: white;
 }
+
+footer ul.list {
+  background-color: white;
+}

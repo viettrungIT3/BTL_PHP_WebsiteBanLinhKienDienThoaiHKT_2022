@@ -1,4 +1,9 @@
-<footer>
+<!-- chatbot -->
+<?php
+include 'chatbot.php';
+?>
+
+<footer id="footer">
     <div class="social">
         <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
         <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
@@ -14,3 +19,14 @@
     </ul>
     <p class="copyright">copy by HKT-SHOP.com 2022</p>
 </footer>
+
+<script>
+    $(document).ready(function() {
+        $('a').click(function(e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            $('#content').load(url + ' #content');
+            $('#footer').load('footer.php');
+        });
+    });
+</script>

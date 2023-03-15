@@ -20,7 +20,7 @@ include 'chatbot.php';
     <p class="copyright">copy by HKT-SHOP.com 2022</p>
 </footer>
 
-<script>
+<!-- <script>
     $(document).ready(function() {
         $('a').click(function(e) {
             e.preventDefault();
@@ -29,4 +29,4 @@ include 'chatbot.php';
             $('#footer').load('footer.php');
         });
     });
-</script>
+</script> -->
